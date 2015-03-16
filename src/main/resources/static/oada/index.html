@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Test Farms - OADA</title>
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>  
+        <style>
+            body { padding: 20px; }
+            #messages { margin-top: 6px; }
+        </style>
+    </head>
+    <body>
+        <noscript><h2 style="color: #ff0000">You are so 90's!</h2></noscript>
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                  <a class="navbar-brand" href="../">Test Farms</a>
+                </div>
+                <div class="navbar-collapse">
+                    <div id="user-authorized" class="navbar-right hidden">
+                        <form class="navbar-form navbar-right" action="../logout.do" method="post">
+                            <div class="form-group">
+                                <label for="username" id="username">Username</label>
+                            </div>
+                            <input type="hidden" name="_csrf" id="csrf-token"/>
+                            <button type="submit" class="btn btn-default">Logout</button>
+                        </form>
+                    </div>
+                    <div id="user-unauthorized" class="navbar-right hidden">
+                        <form class="navbar-form navbar-right" action="../login.html" method="get">
+                            <button type="submit" class="btn btn-default">Login</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <div class="container">
+            <div id="content-authorized" class="hidden">
+                <h2 id="user-greeting"></h2>
+                <hr/>
+                <div>
+                    <div class="panel-group" id="accordion">
+                        <div class="panel">
+                            <div class="panel-body panel-default">
+                                <div class="btn-toolbar pull-right" role="toolbar" >
+                                    <a href="#" class="btn btn-default openall">Open all</a> 
+                                    <a href="#" class="btn btn-default closeall">Close all</a>
+                               </div>
+                           </div>
+                       </div>
+                       <div id="user-panel" class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Observant User details</a>
+                                </h4>
+                            </div>
+                            <div id="collapseOne" class="panel-collapse collapse">
+                                <div class="panel-body" data-rest-url="user/oada" >
+                                    <pre>Loading ...</pre>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="content-unauthorized" class="hidden">
+                <h2>Unauthorized access!</h2>
+                <p>This should never happen!</p>
+            </div>
+        </div>
+        <script>
+            $('#csrf-token').attr('value', $.cookie('XSRF-TOKEN'));
+
+            $.ajax('../user')
+                .done(function(data, statusText, xhr) {
+                    $('#user-authorized').removeClass('hidden');
+                    $('#user-unauthorized').addClass('hidden');
+                    $('#username').html('User: ' + data.username);
+                    $('#content-authorized').removeClass('hidden');
+                    $('#content-unauthorized').addClass('hidden');
+                    $('#user-greeting').html('Hi ' + data.username + '!');
+                })
+                .fail(function() {
+                    $('#user-authorized').addClass('hidden');
+                    $('#user-unauthorized').removeClass('hidden');
+                    $('#content-authorized').addClass('hidden');
+                    $('#content-unauthorized').removeClass('hidden');
+                });
+
+            $('#user-panel').on('show.bs.collapse', function(e){
+                var restUrl = $(e.target).find('div[data-rest-url]').attr('data-rest-url');
+                $.ajax('../' + restUrl)
+                .done(function(data, statusText, xhr) {
+                    $(e.target).find('.panel-body pre').text(JSON.stringify(data, undefined, 4));
+                });
+            });
+
+            $('.closeall').click(function(){
+                $('.panel-collapse.in').collapse('hide');
+            });
+            $('.openall').click(function(){
+                $('.panel-collapse:not(".in")').collapse('show');
+            });
+
+        </script>
+    </body>
+</html>

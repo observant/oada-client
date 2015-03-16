@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Test Farms Login</title>
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/URI.js/1.11.2/URI.min.js"></script>
+        <style>
+            body { padding: 20px; }
+            #messages { margin-top: 6px; }
+        </style>
+    </head>
+    <body>
+        <noscript><h2 style="color: #ff0000">You are so 90's!</h2></noscript>
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                  <a class="navbar-brand" href="#">Test Farms</a>
+                </div>
+                <div class="navbar-collapse ">
+                </div>
+            </div>
+        </nav>
+        <div class="container">
+                <form action="login.do" method="post">
+                    <div class="alert alert-warning hidden" role="alert" id="login-error-message">
+                        <p>Incorrect username or password</p>
+                    </div>
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" class="form-control" name="username" placeholder="Username">
+                    </div>
+                    <div class="form-group">
+                      <label for="password">Password</label>
+                        <input type="password" class="form-control" name="password" placeholder="Password">
+                    </div>
+                    <input type="hidden" name="_csrf" id="csrf-token"/>
+                    <button type="submit" class="btn btn-default">Submit</button>
+                </form>
+        </div>
+        <script>
+            $('#csrf-token').attr('value', $.cookie('XSRF-TOKEN'));
+            var uri = new URI(document.location);
+            if (uri.query(true)['authentication_error'] == 'true') {
+                $('#login-error-message').removeClass('hidden');
+            }
+        </script>
+    </body>
+</html>

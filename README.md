@@ -22,7 +22,7 @@ Scopes can be used to limit the amount of data that is made available by the res
 ##Authentication Process  
 The user authentication process is triggered when a third-party application tries to access the OpenLink API without a valid user authentication token. When this occurs, rather than returning the requested resource, the client is redirected to an Observant hosted login page. This page submits the user's Observant authentication credentials (username and password) directly to the Observant OAuth authentication server. Upon successful authentication the user is redirect back to the client application's return url.
 
-###￼Client  
+###￼Client Stage  
 In order for the client to make a successful request to the OpenLink API it must include a state code. This is achieved by the following two stages: 
   1. Client Registration  
 The Client must be registered manually with Observant. Currently, the only way to register a new client application with Observant is to send an email requesting the Client authentication credentials.
@@ -36,18 +36,10 @@ Request Parameter | Description | Value
 redirect_url | Contains the url used to redirect back to the client application (this callback url should be registered with Observant and must use the HTTPS protocol) | ${client_url}
 response_type | Contains the response type code | code
 
-###￼User  
+###￼User Stage  
 A user will have authentication credentials that are registered with Observant. These authentication credentials can be reset though Observant Global.
 
-###Resource Provider  
-The OpenLink API is an Observant hosted resource.  
-####Service location  
-        | ￼￼￼￼Domain           |￼￼Path
---------|------------------|--------
-￼API root|${resource-domain}|￼￼/api
-
 ###Authentication Server  
-The Observant OAuth authentication server has the following paths.  
 ####Service location  
                   | ￼￼Domain      |￼Path
 ------------------|-------------|--------
@@ -146,7 +138,11 @@ curl -v -H "Authorization: Bearer 63d83905-2c82-4ced-8716-e5b7d9788c62" ${oauth-
 
 
 ## Retrieving Data
-The API is a REST API using the JSON data format. 
+The OpenLink API is a REST API  using the JSON data format.  
+###Service location  
+        | ￼￼￼￼Domain           |￼￼Path
+--------|------------------|--------
+￼API root|${resource-domain}|￼￼/api
 
 ### Endpoints
 **/api/user**  

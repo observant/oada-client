@@ -23,7 +23,7 @@ This will start the application from the command line with default settings prov
 file in the application's classpath. Open URL [http://localhost:9977/testfarms/](http://localhost:9977/testfarms/) 
 in your browser to access the application.
 
-## Overridig default settings
+## Overriding default settings
 To override default properties for the application copy file ```oada-client.properties``` to the folder 
 ```~/.observant``` and update property values as needed.
 

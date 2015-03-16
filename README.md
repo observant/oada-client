@@ -182,7 +182,8 @@ returns a list of the available portfolios
 ]
 ```
 
-**/api/bookmarks/sensors** or **/api/bookmarks/sensors?portfolio={portfolioId}**  
+**/api/bookmarks/sensors** or  
+**/api/bookmarks/sensors?portfolio={portfolioId}**  
 returns a list of all available sensors or available sensors for the specified portfolio
 ```
 [ 

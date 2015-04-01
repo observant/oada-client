@@ -50,13 +50,25 @@
                                </div>
                            </div>
                        </div>
+                       <div id="bookmarks-panel" class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseBookmarks">Observant Bookmarks</a>
+                                </h4>
+                            </div>
+                            <div id="collapseBookmarks" class="panel-collapse collapse">
+                                <div class="panel-body" data-rest-url="bookmarks" >
+                                    <pre>Loading ...</pre>
+                                </div>
+                            </div>
+                        </div>
                        <div id="user-panel" class="panel panel-default">
                             <div class="panel-heading">
                                 <h4 class="panel-title">
-                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Observant User details</a>
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseUser">Observant User Details</a>
                                 </h4>
                             </div>
-                            <div id="collapseOne" class="panel-collapse collapse">
+                            <div id="collapseUser" class="panel-collapse collapse">
                                 <div class="panel-body" data-rest-url="user/oada" >
                                     <pre>Loading ...</pre>
                                 </div>
@@ -90,6 +102,14 @@
                 });
 
             $('#user-panel').on('show.bs.collapse', function(e){
+                var restUrl = $(e.target).find('div[data-rest-url]').attr('data-rest-url');
+                $.ajax('../' + restUrl)
+                .done(function(data, statusText, xhr) {
+                    $(e.target).find('.panel-body pre').text(JSON.stringify(data, undefined, 4));
+                });
+            });
+
+            $('#bookmarks-panel').on('show.bs.collapse', function(e){
                 var restUrl = $(e.target).find('div[data-rest-url]').attr('data-rest-url');
                 $.ajax('../' + restUrl)
                 .done(function(data, statusText, xhr) {

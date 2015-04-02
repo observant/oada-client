@@ -50,7 +50,7 @@ $ curl -v https://myService:mySecret123@test.obsrv.it/uaa/oauth/token -d grant_t
 {"access_token":"564810ff-7bd6-4ff7-a3bb-f76b0a0c28be","token_type":"bearer","refresh_token":"e630def6-2b33-40e0-af74-e51f52a3c11d","expires_in":86399,"scope":"soil-moisture"}
 ```
 
-Response body is on the last line. Important part from the response is `"access_token":"564810ff-7bd6-4ff7-a3bb-f76b0a0c28be"`. Using this value we can now issue request to Observant OADA endpoints without any other authentication information. We can store token information for later use. For example we might want to access some resources using scheduled background tasks.
+Response body is on the last line. Important part from the response is `"access_token":"564810ff-7bd6-4ff7-a3bb-f76b0a0c28be"`. Using this value we can now issue request to Observant OADA endpoints without any other authentication information. We can store token information for later use. For example we might want to access some resources using scheduled background tasks. Same token can be used as many times as needed until the expiration time.
 
 ### Accessing OAuth2 protected resources
 
@@ -60,7 +60,7 @@ $ curl -v -H "Authorization: Bearer 564810ff-7bd6-4ff7-a3bb-f76b0a0c28be" https:
 {"username":"bob","scope":["soil-moisture"],"resourceIds":["oada/api"],"clientId":"myService","grantType":"authorization_code"}
 ```
 Response body contains JSON document with details about the client, user and grant information.
-Similar request can be sent to resource server with or without actual user interaction. For example we could issue this request when user is visiting specific page in client server or from background task periodically updating data from Observent OADA Resource server.
+Subsequent similar requests can be sent to resource server with or without actual user interaction. For example we could issue request when user is visiting specific page in client server or from background task periodically updating data from Observent OADA Resource server.
 
 ### Handling token timeouts
 Token timeouts are part of the OAuth2 protocol and can be handled standard way.

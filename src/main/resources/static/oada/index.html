@@ -74,6 +74,18 @@
                                 </div>
                             </div>
                         </div>
+                        <div id="portfolios-panel" class="panel panel-default">
+							<div class="panel-heading">
+								<h4 class="panel-title">
+									<a data-toggle="collapse" data-parent="#accordion" href="#collapsePortfolios">Observant Portfolios</a>
+								</h4>
+							</div>
+							<div id="collapsePortfolios" class="panel-collapse collapse">
+								<div class="panel-body" data-rest-url="bookmarks/portfolios">
+									<pre>Loading ...</pre>
+								</div>
+							</div>
+						</div>
                     </div>
                 </div>
             </div>
@@ -101,20 +113,14 @@
                     $('#content-unauthorized').removeClass('hidden');
                 });
 
-            $('#user-panel').on('show.bs.collapse', function(e){
-                var restUrl = $(e.target).find('div[data-rest-url]').attr('data-rest-url');
-                $.ajax('../' + restUrl)
-                .done(function(data, statusText, xhr) {
-                    $(e.target).find('.panel-body pre').text(JSON.stringify(data, undefined, 4));
-                });
-            });
-
-            $('#bookmarks-panel').on('show.bs.collapse', function(e){
-                var restUrl = $(e.target).find('div[data-rest-url]').attr('data-rest-url');
-                $.ajax('../' + restUrl)
-                .done(function(data, statusText, xhr) {
-                    $(e.target).find('.panel-body pre').text(JSON.stringify(data, undefined, 4));
-                });
+            $('.panel').each(function() {
+            	$(this).on('show.bs.collapse', function(e){
+                    var restUrl = $(e.target).find('div[data-rest-url]').attr('data-rest-url');
+                    $.ajax('../' + restUrl)
+                    .done(function(data, statusText, xhr) {
+                        $(e.target).find('.panel-body pre').text(JSON.stringify(data, undefined, 4));
+                    });
+            	});
             });
 
             $('.closeall').click(function(){

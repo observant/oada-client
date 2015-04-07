@@ -10,17 +10,8 @@ package au.com.observant.oada.client.model;
  */
 public class Portfolio {
 
-    private final String id;
-    private final String name;
-
-    /**
-     * @param id
-     * @param name
-     */
-    public Portfolio(String id, String name) {
-        this.id = id;
-        this.name = name;
-    }
+    private String id;
+    private String name;
 
     /**
      * Returns id.
@@ -38,6 +29,24 @@ public class Portfolio {
      */
     public String getName() {
         return name;
+    }
+
+    /**
+     * Sets id.
+     *
+     * @param id the id to set
+     */
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    /**
+     * Sets name.
+     *
+     * @param name the name to set
+     */
+    public void setName(String name) {
+        this.name = name;
     }
 
     /**

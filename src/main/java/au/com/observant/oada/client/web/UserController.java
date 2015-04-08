@@ -5,21 +5,16 @@
  */
 package au.com.observant.oada.client.web;
 
-import java.io.IOException;
 import java.security.Principal;
 import java.util.Optional;
-
-import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpStatus;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.oauth2.client.OAuth2RestOperations;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -75,17 +70,5 @@ public class UserController {
         TestFarmsUser user = opt.map(p -> new TestFarmsUser(p.getName())).orElseThrow(
                 () -> new AccessDeniedException("Unauthorized"));
         return user;
-    }
-
-    /**
-     * Exception handler for {@link AccessDeniedException}.
-     * Maps {@link AccessDeniedException} to HTTP response 401.
-     *
-     * @param response
-     * @throws IOException
-     */
-    @ExceptionHandler(AccessDeniedException.class)
-    public void exceptionHandler(HttpServletResponse response) throws IOException {
-        response.sendError(HttpStatus.UNAUTHORIZED.value());
     }
 }

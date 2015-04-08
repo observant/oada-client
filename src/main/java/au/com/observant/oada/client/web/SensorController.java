@@ -26,13 +26,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import au.com.observant.oada.client.model.ObservantUser;
-import au.com.observant.oada.client.model.Portfolio;
+import au.com.observant.oada.client.model.Sensor;
 
 /**
  * End points to query user data.
  */
 @Controller
-public class PortfolioController {
+public class SensorController {
 
     private static final Logger log = LoggerFactory.getLogger(UserController.class);
 
@@ -48,18 +48,18 @@ public class PortfolioController {
      * @param principal current user in TestFarms server.
      * @return {@link ObservantUser}
      */
-    @RequestMapping(value = "/bookmarks/portfolios", method = RequestMethod.GET)
+    @RequestMapping(value = "/bookmarks/sensors", method = RequestMethod.GET)
     @ResponseBody
-    public Set<Portfolio> getObservantPortfolios(Principal principal) {
+    public Set<Sensor> getObservantPortfolios(Principal principal) {
         Optional<Principal> opt = Optional.ofNullable(principal);
-        String url = baseUrl + "bookmarks/portfolios";
+        String url = baseUrl + "bookmarks/sensors";
         // If user is authenticated get user account data from the Observant OADA Resources server.
 
         @SuppressWarnings("unchecked")
-        Set<Portfolio> portfolios = opt.map(p -> restTemplate.getForObject(url, Set.class)).orElseThrow(
+        Set<Sensor> sensors = opt.map(p -> restTemplate.getForObject(url, Set.class)).orElseThrow(
                 () -> new AccessDeniedException("Unauthorized"));
-        log.info("Response from OADA resource server: {}", portfolios);
-        return portfolios;
+        log.info("Response from OADA resource server: {}", sensors);
+        return sensors;
     }
 
     /**

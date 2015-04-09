@@ -1,5 +1,7 @@
 # API Endpoints
 
+The OpenLink API is a REST API using the JSON data format.
+
 ## Bookmarks - `/api/bookmarks`
 Responds to HTTP GET request and returns list of bookmarks for Observant OADA API.
 

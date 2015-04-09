@@ -6,6 +6,6 @@ Observant's OpenLink API allows an Observant user to share their data with third
 * [API](API.md)
 * [Getting started: Observant demo client](GettingStarted.md)
 * [OAuth2: step by step](OAuth2-step-by-step.md)
-* [OAuth2: longer description](OAUth2-details.md)
+* [OAuth2: longer description](OAuth2-details.md)
 * [FAQ](FAQ.md)
 * [Glossary](Glossary.md)

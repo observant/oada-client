@@ -16,6 +16,7 @@ import org.springframework.security.oauth2.client.OAuth2RestOperations;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import au.com.observant.oada.client.model.Sensor;
@@ -40,13 +41,19 @@ public class SensorController {
      */
     @RequestMapping(value = "/bookmarks/sensors", method = RequestMethod.GET)
     @ResponseBody
-    public Set<Sensor> getObservantPortfolios(Principal principal) {
+    public Set<Sensor> getObservantPortfolios(
+            @RequestParam(value = "portfolio", required = false) String portfolioId, Principal principal) {
         Optional<Principal> opt = Optional.ofNullable(principal);
-        String url = baseUrl + "bookmarks/sensors";
-
+        StringBuffer url = new StringBuffer(baseUrl);
+        url.append("bookmarks/sensors");
         @SuppressWarnings("unchecked")
-        Set<Sensor> sensors = opt.map(p -> restTemplate.getForObject(url, Set.class)).orElseThrow(
-                () -> new AccessDeniedException("Unauthorized"));
+        Set<Sensor> sensors = opt
+                .map(
+                        p -> restTemplate.getForObject(
+                                portfolioId == null ? url.toString() : url.append("?portfolio=").append(portfolioId)
+                                        .toString(),
+                                Set.class))
+                                .orElseThrow(() -> new AccessDeniedException("Unauthorized"));
         return sensors;
     }
 }

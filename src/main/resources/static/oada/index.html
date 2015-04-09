@@ -94,7 +94,12 @@
 								</h4>
 							</div>
 							<div id="collapseSensors" class="panel-collapse collapse">
-								<div class="panel-body" data-rest-url="bookmarks/sensors">
+								<div class="panel-body" >
+								<div class="input-group"> 
+									<span class="input-group-addon">Filter by</span><input id="filter" type="text" class="form-control" name="portfolio" placeholder="Portfolio">
+								</div>
+								</div>
+								<div class="panel-body" data-rest-url="bookmarks/sensors" data-base-rest-url="bookmarks/sensors">
 									<pre>Loading ...</pre>
 								</div>
 							</div>
@@ -135,6 +140,20 @@
                     });
             	});
             });
+            
+            $('#filter').keyup(function () {
+            	var panel = $(this).closest('.panel');
+                var url = $(panel).find('div[data-rest-url]').attr('data-base-rest-url');
+                if($(this).val()) {
+                	url = url + "?portfolio=" + $(this).val();
+                }
+                $(panel).find('div[data-rest-url]').attr('data-rest-url', url);
+                $(panel).find('.panel-body pre').text('loading...');
+                $.ajax('../' + url)
+                .done(function(data, statusText, xhr) {
+                	$(panel).find('.panel-body pre').text(JSON.stringify(data, undefined, 4));
+                });
+            })
 
             $('.closeall').click(function(){
                 $('.panel-collapse.in').collapse('hide');

@@ -17,7 +17,7 @@ This document describes general workflow between User, Client Application and Ob
 
 ### Step 2
 Client Application sends HTTP redirect response containing Observant authorization URL and required parameters `client_id`, `redirect_uri`, `response_type` and optional `state`.
-For example `https://test.obsrv.it/uaa/oauth/authorize?client_id=TestFarms&redirect_uri=http%3A%2F%2Flocalhost%3A9977%2Ftestfarms%2Foada%2F&response_type=code&state=ABC123`.
+For example `https://test.obsrv.it/uaa/oauth/authorize?client_id=myService&redirect_uri=http%3A%2F%2Flocalhost%3A1888%myservice%2Foada%2F&response_type=code&state=ABC123`.
 
 ### Step 3
 Browsers sends HTTP GET request to Observant server using URL from previous step.
@@ -34,7 +34,7 @@ Browser submits login form using HTTP POST request after user clicks 'SIGN IN' b
 
 ### Step 6
 1. Observant server recognises User and sends HTTP 302 response to redirect User to the authorization page.
-For example `https://test.obsrv.it//uaa/oauth/authorize?client_id=TestFarms&redirect_uri=http%3A%2F%2Flocalhost%3A9977%2Ftestfarms%2Foada%2F&response_type=code&state=ABC123`.
+For example `https://test.obsrv.it//uaa/oauth/authorize?client_id=myService&redirect_uri=http%3A%2F%2Flocalhost%3A1188%2Fmyservice%2Foada%2F&response_type=code&state=ABC123`.
 2. Browser sends GET request with specified URL to Observant server.
 3. Observant server responds with authorization page.
 ![alt text][03]
@@ -43,7 +43,7 @@ For example `https://test.obsrv.it//uaa/oauth/authorize?client_id=TestFarms&redi
 Browser submits authorization form using HTTP POST request after user clicks 'ALLOW' button.
 
 ### Step 8
-Observant server recognises request and responds with HTTP 302 and URL `http://localhost:9977/testfarms/oada/?code=XYZ789`.
+Observant server recognises request and responds with HTTP 302 and URL `http://localhost:1888/myservice/oada/?code=XYZ789`.
 
 ### Step 9
 Browser sends HTTP GET request to specified URL in Client Application.

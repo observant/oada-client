@@ -1,7 +1,7 @@
 # FAQ
 
 ## As a Client can I skip the manual Observant authentication?
-Observant is using OAuth2 protocol to authenticate Users and authorise Client (third party) access to User's data. Client system can't read User data unless access is explicitly granted. Before granting any access Observant has to authenticate User.
+Observant is using OAuth2 protocol to authenticate Users and authorise Client (third party) access to User's data. Client system can't read User data unless access is explicitly granted. Before granting any access Observant has to authenticate the User.
 
 ## As a Client do I need to complete the User authentication for every API request?
 After successful authentication and authorisation Observant provides 'access token' which can be used for subsequent API request. Client side application is responsible for storing 'access token' for later use if needed. For example Client application can issue API calls from background to Observant API using stored 'access token' without any interaction with the User.
@@ -21,5 +21,5 @@ Most likely you have to login to the Client application time to time. This is ma
 
 ## What are the benefits of OAuth2 protocol?
 * There is no need to disclose User credentials to Client application.
-* Client application has no need to manage User password changes.
+* Client application has no need to handle User account changes like password renewals etc.
 * User can explicitly grant and revoke access to data shared by Data Provider.

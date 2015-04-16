@@ -34,7 +34,7 @@ Browser submits login form using HTTP POST request after user clicks 'SIGN IN' b
 
 ### Step 6
 1. Observant server recognises User and sends HTTP 302 response to redirect User to the authorization page.
-For example `https://test.obsrv.it//uaa/oauth/authorize?client_id=myService&redirect_uri=http%3A%2F%2Flocalhost%3A1188%2Fmyservice%2Foada%2F&response_type=code&state=ABC123`.
+For example `https://test.obsrv.it/uaa/oauth/authorize?client_id=myService&redirect_uri=http%3A%2F%2Flocalhost%3A1188%2Fmyservice%2Foada%2F&response_type=code&state=ABC123`.
 2. Browser sends GET request with specified URL to Observant server.
 3. Observant server responds with authorization page.
 ![alt text][03]

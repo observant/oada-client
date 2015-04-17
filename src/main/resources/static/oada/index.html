@@ -2,13 +2,56 @@
 <html>
     <head>
         <title>Test Farms - OADA</title>
+        
         <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>  
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>  
         <style>
             body { padding: 20px; }
             #messages { margin-top: 6px; }
+            .modal-title { 
+            	padding-top: 4px;
+            	padding-left: 5px;
+            }
+            
+            #filter {
+				height: 36px;
+			}
+            
+            .modal-body {
+				padding-bottom: 10px;
+			}
+			.modal-footer {
+ 				margin-top: 0px;
+ 			}
+ 			.modal-content .modal-header {
+ 				background-color: #f5f5f5;
+			  	border-bottom: 1px solid #ddd;
+			}
+			.endpoint-url {
+				color:#9F9999; 
+				font-weight: 200; 
+				padding-left:10px; 
+				display:none;
+			}
+			.modal-title .endpoint-url {
+				display:inline;
+			}
+			
+			.alert .glyphicon{
+			    font-size: 16px;
+			    vertical-align: middle;
+			}
+			
+			.alert div {
+			    display:table-cell;
+			}
+			
+			.alert .alert-text {
+			    padding-left: 10px;
+			}
+ 			
         </style>
     </head>
     <body>
@@ -50,61 +93,95 @@
                                </div>
                            </div>
                        </div>
-                       <div id="bookmarks-panel" class="panel panel-default">
+                       <div id="bookmarks-panel" class="panel panel-default" data-add-url-targets="true"
+                       		data-target-rest-url-me="users/me"
+                       		data-target-rest-url-portfolios="bookmarks/portfolios"
+                       		data-target-rest-url-sensors="bookmarks/sensors"
+	                   		data-rest-url="bookmarks">
                             <div class="panel-heading">
                                 <h4 class="panel-title">
-                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseBookmarks">Observant Bookmarks</a>
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseBookmarks">Bookmarks</a><span class="endpoint-url"></span>
                                 </h4>
                             </div>
                             <div id="collapseBookmarks" class="panel-collapse collapse">
-                                <div class="panel-body" data-rest-url="bookmarks" >
+								<div class="panel-body" >
+									<div class="alert alert-info">
+										<div class="glyphicon glyphicon-info-sign"></div>
+										<div class="alert-text">
+											Select an endpoint name in the response below to jump to the results returned from the associated URL.
+										</div>
+									</div>
                                     <pre>Loading ...</pre>
                                 </div>
                             </div>
                         </div>
-                       <div id="user-panel" class="panel panel-default">
+                       <div id="user-panel" class="panel panel-default" data-rest-url="users/me">
                             <div class="panel-heading">
                                 <h4 class="panel-title">
-                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseUser">Observant User Details</a>
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseUser">User Details</a><span class="endpoint-url"></span>
                                 </h4>
                             </div>
                             <div id="collapseUser" class="panel-collapse collapse">
-                                <div class="panel-body" data-rest-url="user/oada" >
+                                <div class="panel-body">
                                     <pre>Loading ...</pre>
                                 </div>
                             </div>
                         </div>
-                        <div id="portfolios-panel" class="panel panel-default">
+                        <div id="portfolios-panel" class="panel panel-default" data-rest-url="bookmarks/portfolios">
 							<div class="panel-heading">
 								<h4 class="panel-title">
-									<a data-toggle="collapse" data-parent="#accordion" href="#collapsePortfolios">Observant Portfolios</a>
+									<a data-toggle="collapse" data-parent="#accordion" href="#collapsePortfolios">Portfolios</a><span class="endpoint-url"></span>
 								</h4>
 							</div>
 							<div id="collapsePortfolios" class="panel-collapse collapse">
-								<div class="panel-body" data-rest-url="bookmarks/portfolios">
+								<div class="panel-body">
 									<pre>Loading ...</pre>
 								</div>
 							</div>
 						</div>
-						
-                        <div id="portfolios-panel" class="panel panel-default">
+						<div id="sensors-panel" class="panel panel-default"
+							data-rest-url="bookmarks/sensors"
+							data-base-rest-url="bookmarks/sensors" data-json-key="id"
+							data-json-additional-keys="portfolio"
+							data-key-value-tooltip="View Sensor Metadata"
+							data-target-modal="#display-modal"
+							data-modal-title="Sensor Metadata"
+							data-modal-url="resource/{portfolio}/{id}/meta">
 							<div class="panel-heading">
 								<h4 class="panel-title">
-									<a data-toggle="collapse" data-parent="#accordion" href="#collapseSensors">Observant Sensors</a>
+									<a data-toggle="collapse" data-parent="#accordion"
+										href="#collapseSensors">Sensors</a><span class="endpoint-url"></span>
 								</h4>
 							</div>
 							<div id="collapseSensors" class="panel-collapse collapse">
-								<div class="panel-body" >
-								<div class="input-group"> 
-									<span class="input-group-addon">Filter by</span><input id="filter" type="text" class="form-control" name="portfolio" placeholder="Portfolio">
+								<div class="panel-body">
+									<div class="alert alert-info">
+										<div class="glyphicon glyphicon-info-sign"></div>
+										<div class="alert-text">
+											Enter a Portfolio name in the field below to filter the results from the Sensors endpoint - returns only the Sensors visible to the User within the particular Portfolio.
+										</div>
+									</div>
+									<div class="input-group">
+										<span class="input-group-addon">Filter by</span><input
+											data-rel="tooltip"
+											title="Filter the Sensor results by entering a Portolio name"
+											id="filter" type="text" class="form-control" name="portfolio"
+											placeholder="Portfolio">
+									</div>
 								</div>
-								</div>
-								<div class="panel-body" data-rest-url="bookmarks/sensors" data-base-rest-url="bookmarks/sensors">
+								<div class="panel-body">
+									<div class="alert alert-info">
+										<div class="glyphicon glyphicon-info-sign"></div>
+										<div class="alert-text">Individual Sensor Metadata can be viewed by
+												clicking on a Sensor identifer within the JSON response data
+												shown below.
+										</div>
+									</div>
 									<pre>Loading ...</pre>
 								</div>
 							</div>
 						</div>
-                    </div>
+					</div>
                 </div>
             </div>
             <div id="content-unauthorized" class="hidden">
@@ -112,56 +189,248 @@
                 <p>This should never happen!</p>
             </div>
         </div>
-        <script>
-            $('#csrf-token').attr('value', $.cookie('XSRF-TOKEN'));
-
-            $.ajax('../user')
-                .done(function(data, statusText, xhr) {
-                    $('#user-authorized').removeClass('hidden');
-                    $('#user-unauthorized').addClass('hidden');
-                    $('#username').html('User: ' + data.username);
-                    $('#content-authorized').removeClass('hidden');
-                    $('#content-unauthorized').addClass('hidden');
-                    $('#user-greeting').html('Hi ' + data.username + '!');
-                })
-                .fail(function() {
-                    $('#user-authorized').addClass('hidden');
-                    $('#user-unauthorized').removeClass('hidden');
-                    $('#content-authorized').addClass('hidden');
-                    $('#content-unauthorized').removeClass('hidden');
+        
+        <!-- Sensor Metadata Modal-->
+        <div class="modal fade" id="display-modal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+		    <div class="modal-dialog">
+		        <div class="modal-content">
+		            <div class="modal-header">
+		            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span style="padding: 5px" class="glyphicon glyphicon-remove"></span></button>
+		            <h4 class="modal-title" id="myModalLabel">Sensor Metadata <span id="modalUrl" class="endpoint-url"></span></h4>
+		            </div>
+		            <div class="modal-body">
+		            	<pre class="modal-body-pre">Loading...<span class="badge">14</span></pre>
+		            </div>
+		            <div class="modal-footer">
+		                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		        </div>
+		    </div>
+		  </div>
+		</div>
+		<!-- End -->
+		
+		<script>
+		 	$(document).bind("ajaxSend", function(){
+			   $("#loading-indicator").show();
+			 }).bind("ajaxComplete", function(){
+			   $("#loading-indicator").hide();
+			 });
+		 
+			// Apply tool tips
+			if ($("[data-rel=tooltip]").length) {
+		        $("[data-rel=tooltip]").tooltip({
+		            placement: 'bottom',
+		            trigger: "hover"
+		        });
+		    }
+			 
+			// Apply tool tips
+			$('.panel-title span, .modal-title span').each(function(element) {
+				$(this).attr("title", "Endpoint URL");
+				$(this).tooltip({
+		            placement: 'bottom',
+		            trigger: "hover"
+		        });
+			});
+			
+			// Add Close All and Open All function to accordian
+			$('.closeall').click(function() {
+				$('.panel-collapse.in').collapse('hide');
+			});
+			$('.openall').click(function() {
+				$('.panel-collapse').collapse('show');
+			});
+			
+			$('#csrf-token').attr('value', $.cookie('XSRF-TOKEN'));
+	
+			$.ajax('../user').done(function(data, statusText, xhr) {
+				$('#user-authorized').removeClass('hidden');
+				$('#user-unauthorized').addClass('hidden');
+				$('#username').html('User: ' + data.username);
+				$('#content-authorized').removeClass('hidden');
+				$('#content-unauthorized').addClass('hidden');
+				$('#user-greeting').html('Hi ' + data.username + '!');
+			}).fail(function() {
+				$('#user-authorized').addClass('hidden');
+				$('#user-unauthorized').removeClass('hidden');
+				$('#content-authorized').addClass('hidden');
+				$('#content-unauthorized').removeClass('hidden');
+			});
+	
+			$('.panel').each(function() {
+				$(this).on('show.bs.collapse',function(e) {
+					var panel = $(this);
+					panel.find('.panel-title span').text("/api/" + panel.attr('data-rest-url')).show();
+                	var a = getDataAttributesObject(panel, "data-", true, true);
+					$.ajax('../' + a.restUrl).done(function(data, statusText, xhr) {
+						if(a.addUrlTargets) {
+							applyAccordianTargets(panel.find('.panel-body pre'), data, getDataAttributesObject(panel, "data-target-", true, false))
+						} else if(a.targetModal) {
+							 processEndpointData(data, panel.find('.panel-body pre'), a.jsonKey, a.jsonAdditionalKeys, a.keyValueTooltip, $(a.targetModal), a.modalUrl);
+						} else{
+							panel.find('.panel-body pre').html(JSON.stringify(data,undefined,4));
+						}
+					});
+				});
+				$(this).on('hide.bs.collapse',function(e) {
+					$(this).find('.panel-title span').hide();
+				});
+			});
+	
+			$('#filter').keyup(function() {
+				var panel = $(this).closest('.panel');
+				var url = panel.attr('data-base-rest-url');
+				if ($(this).val()) {
+					url = url + "?portfolio=" + $(this).val();
+				}
+				panel.attr('data-rest-url', url);
+				panel.find('.panel-title span').text("/api/" + panel.attr('data-rest-url'));
+				panel.find('.panel-body pre').text('loading...');
+				if (typeof this.xhr !== 'undefined')
+                    this.xhr.abort();
+            	var a = getDataAttributesObject(panel, "data-", true, true);
+                this.xhr = $.ajax('../' + a.restUrl).done(function(data, statusText, xhr) {
+                	processEndpointData(data, panel.find('.panel-body pre'), a.jsonKey, a.jsonAdditionalKeys, a.keyValueTooltip, $(a.targetModal), a.modalUrl);
                 });
-
-            $('.panel').each(function() {
-            	$(this).on('show.bs.collapse', function(e){
-                    var restUrl = $(e.target).find('div[data-rest-url]').attr('data-rest-url');
-                    $.ajax('../' + restUrl)
-                    .done(function(data, statusText, xhr) {
-                        $(e.target).find('.panel-body pre').text(JSON.stringify(data, undefined, 4));
-                    });
-            	});
-            });
-            
-            $('#filter').keyup(function () {
-            	var panel = $(this).closest('.panel');
-                var url = $(panel).find('div[data-rest-url]').attr('data-base-rest-url');
-                if($(this).val()) {
-                	url = url + "?portfolio=" + $(this).val();
-                }
-                $(panel).find('div[data-rest-url]').attr('data-rest-url', url);
-                $(panel).find('.panel-body pre').text('loading...');
-                $.ajax('../' + url)
-                .done(function(data, statusText, xhr) {
-                	$(panel).find('.panel-body pre').text(JSON.stringify(data, undefined, 4));
-                });
-            })
-
-            $('.closeall').click(function(){
-                $('.panel-collapse.in').collapse('hide');
-            });
-            $('.openall').click(function(){
-                $('.panel-collapse:not(".in")').collapse('show');
-            });
-
-        </script>
+			});
+			
+			var processEndpointData = function(text, destinationElement, key, additionalKeys, keyValueTooltip, targetModal, modalUrl) {
+					data = JSON.stringify(text,undefined,4);
+                	if(key) {
+		                var keys = additionalKeys ? additionalKeys.replace(" ", "").split(",") : additionalKeys;
+		                destinationElement.html(applyModalLinkToJsonText(data, key));
+						destinationElement.find("a").each(function(i, element) {
+			                var value= $(this).text();
+			                applyTargetModal($(element), targetModal, modalUrl, getKeyValuePairs(getTextAfter(data, value), key, value, keys));
+							applyToolTip($(element), keyValueTooltip);
+						});
+                	} else {
+                		destinationElement.html(data);
+                	}
+			}
+			
+			var applyAccordianTargets = function(destinationElement, text, attributes) {
+				var text = JSON.stringify(text,undefined,4);
+				text = applyTag(text, getRegexMatches(text, jsonKeyValueRegex("name")), "a", "href='#'");
+				destinationElement.html(text);
+				destinationElement.find("a").each(function(i, element) {
+	           		var value= $(this).text();
+	           		applyToolTip($(element), "Jump to endpoint");
+	           		$(this).on('click', function(e) {
+						e.preventDefault();
+						var dataAttr = attributes["rest-url-"+value];
+						$('.panel-collapse.in').collapse('hide');
+						$('[data-rest-url="' + dataAttr +'"]').find('.panel-collapse').collapse('show');
+	           		});
+				});
+			}
+			
+			var getKeyValuePairs = function(text, firstKey, firstKeyValue, additionalKeys) {
+				var keyValuePairs = {};
+				keyValuePairs[firstKey] = firstKeyValue;
+				for(key in additionalKeys) {
+					var value = findFirstMatch(text, jsonKeyValueRegex(additionalKeys[key])); 
+					keyValuePairs[additionalKeys[key]] = value;
+				}
+				return keyValuePairs;
+			}
+			var getNumberOfResults = function(results) {
+				var count = eval(results).length;
+				return count;
+			}
+			
+			var getDataAttributesObject = function(element, prefix, removePrefix, convertToCamelCased) {
+				var object = {};
+				$(element).each(function() {
+					$.each(this.attributes, function() {
+						if(this.specified) {
+							var attr = this.name.split(prefix)[1];
+							if(attr) {
+								var name = removePrefix ? attr : this.name;
+								if(convertToCamelCased) {
+									var camelCasedName = name.replace(/-([a-z])/g, function (g) { return g[1].toUpperCase(); });
+									object[camelCasedName] = this.value;
+								} else {
+									object[name] = this.value;
+								}
+							}
+						}
+					})
+				})
+				return object;
+			}
+			
+			var getTextAfter = function(text, substring) {
+				return text.substring(text.indexOf(substring));
+			}
+			
+			var applyTargetModal = function(triggeringElement, targetModal, url, keyValuePairs) {
+				triggeringElement.on('click', function(e) {
+					e.preventDefault();
+					var completeUrl = Object.keys(keyValuePairs).length === 0 ? url : insertValues(url, keyValuePairs);
+					$.ajax('../' + completeUrl).done(function(data, statusText, xhr) {
+						var json = JSON.stringify(data,undefined,4);
+						targetModal.find('.modal-body-pre').html(json);
+						targetModal.find('#modalUrl').html("/api/" + completeUrl);
+						targetModal.modal('show');
+					});
+				});
+			}
+			
+			var insertValues = function(url, keyValuePairs) {
+				if(keyValuePairs) {
+					for(index in keyValuePairs) {
+						var n = url.indexOf(index);
+						var placeholder = "{"+index+"}";
+						url = url.replace(placeholder, keyValuePairs[index]);
+					}
+				}
+				return url;
+			}
+			
+			var applyToolTip = function(element, tooltip) {
+				element.attr('title', tooltip);
+				element.tooltip({placement: 'bottom',trigger: "hover"});
+			}
+			
+			var applyModalLinkToJsonText = function(text, key) {
+				var attributes = "href='#' ";
+				return applyLink(text, jsonKeyValueRegex(key), attributes);
+			}
+			
+			var applyLink = function(text, regex, attributes) {
+				return applyTag(text, getRegexMatches(text, regex), "a", attributes);
+			}
+			
+			var jsonKeyValueRegex = function(key) {
+				return new RegExp('"' + key + '": "(.*?)"', "g");
+			}
+			
+			var jsonValueRegex = function(value) {
+				return new RegExp('"' + value + '"', "g");
+			}
+			
+			var findFirstMatch = function(text, regex) {
+				return regex.exec(text)[1];
+			}
+			
+			var getRegexMatches = function(text, regex) {
+				var matches = [];
+				while (result = regex.exec(text)) {
+					regex.lastIndex;
+					matches.push(result[1] ? result[1] : result);
+				}
+				return matches;
+			}
+			
+			var applyTag = function(text, matches, tag, attributes) {
+				var result = null;
+				for (i = 0; i < matches.length; i++) {
+					var repl = "<" + tag + " " + attributes + ">" + matches[i] + "</" + tag + ">";
+					text = text.replace('"' + matches[i] + '"','"' + repl + '"');
+				}
+				return text;
+			}
+		</script>
     </body>
 </html>

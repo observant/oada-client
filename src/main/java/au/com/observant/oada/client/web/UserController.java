@@ -42,7 +42,7 @@ public class UserController {
      * @param principal current user in TestFarms server.
      * @return {@link ObservantUser}
      */
-    @RequestMapping(value = "/user/oada", method = RequestMethod.GET)
+    @RequestMapping(value = "/users/me", method = RequestMethod.GET)
     @ResponseBody
     public ObservantUser getObservantUser(Principal principal) {
         Optional<Principal> opt = Optional.ofNullable(principal);

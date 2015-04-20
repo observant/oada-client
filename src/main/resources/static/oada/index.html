@@ -321,6 +321,7 @@
 						var dataAttr = attributes["rest-url-"+value];
 						$('.panel-collapse.in').collapse('hide');
 						$('[data-rest-url="' + dataAttr +'"]').find('.panel-collapse').collapse('show');
+						$('[data-base-rest-url="' + dataAttr +'"]').find('.panel-collapse').collapse('show');
 	           		});
 				});
 			}

@@ -5,16 +5,24 @@
  */
 package au.com.observant.oada.client.model;
 
+import java.util.LinkedHashSet;
+
 /**
  *
  */
 public class SensorReading {
 
     private String id;
-    private String name;
-    private String type;
-    private String unit;
-    private String format;
+    private LinkedHashSet<SensorReadingEntry> readingEntries = new LinkedHashSet<SensorReadingEntry>();
+
+    public SensorReading() {
+
+    }
+
+    public SensorReading(String id, LinkedHashSet<SensorReadingEntry> readingEntries) {
+        this.id = id;
+        this.readingEntries = readingEntries;
+    }
 
     /**
      * Returns id.
@@ -25,6 +33,14 @@ public class SensorReading {
         return id;
     }
 
+    public void setReadingEntries(LinkedHashSet<SensorReadingEntry> readingEntries) {
+        this.readingEntries = readingEntries;
+    }
+
+    public LinkedHashSet<SensorReadingEntry> getReadingEntries() {
+        return readingEntries;
+    }
+
     /**
      * Sets id.
      *
@@ -32,78 +48,6 @@ public class SensorReading {
      */
     public void setId(String id) {
         this.id = id;
-    }
-
-    /**
-     * Returns name.
-     *
-     * @return the name
-     */
-    public String getName() {
-        return name;
-    }
-
-    /**
-     * Sets name.
-     *
-     * @param name the name to set
-     */
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    /**
-     * Returns type.
-     *
-     * @return the type
-     */
-    public String getType() {
-        return type;
-    }
-
-    /**
-     * Sets type.
-     *
-     * @param type the type to set
-     */
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    /**
-     * Returns unit.
-     *
-     * @return the unit
-     */
-    public String getUnit() {
-        return unit;
-    }
-
-    /**
-     * Sets unit.
-     *
-     * @param unit the unit to set
-     */
-    public void setUnit(String unit) {
-        this.unit = unit;
-    }
-
-    /**
-     * Returns format.
-     *
-     * @return the format
-     */
-    public String getFormat() {
-        return format;
-    }
-
-    /**
-     * Sets format.
-     *
-     * @param format the format to set
-     */
-    public void setFormat(String format) {
-        this.format = format;
     }
 
     /**
@@ -142,12 +86,8 @@ public class SensorReading {
         return true;
     }
 
-    /**
-     * @see java.lang.Object#toString()
-     */
     @Override
     public String toString() {
-        return "SensorReading [id=" + id + ", name=" + name + ", type=" + type + ", unit=" + unit + ", format="
-                + format + "]";
+        return "id : " + id + ", readingEntries : \n" + readingEntries;
     }
 }

@@ -5,25 +5,47 @@
  */
 package au.com.observant.oada.client.model;
 
+import java.util.LinkedHashSet;
+
 /**
  *
  */
 public class Sensor {
 
-    private final String id;
-    private final String portfolio;
-    private final String name;
+    private String id;
+    private String portfolio;
+    private LinkedHashSet<SensorReading> readings = new LinkedHashSet<SensorReading>();
+
+    public Sensor() {
+
+    }
 
     /**
      * @param id
      * @param portfolio
-     * @param name
      */
-    public Sensor(String id, String portfolio, String name) {
-        super();
+    public Sensor(String id, String portfolio) {
         this.id = id;
         this.portfolio = portfolio;
-        this.name = name;
+    }
+
+    /**
+     * @param id
+     * @param portfolio
+     * @param readings
+     */
+    public Sensor(String id, String portfolio, LinkedHashSet<SensorReading> readings) {
+        this.id = id;
+        this.portfolio = portfolio;
+        this.readings = readings;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setPortfolio(String portfolio) {
+        this.portfolio = portfolio;
     }
 
     /**
@@ -45,71 +67,20 @@ public class Sensor {
     }
 
     /**
-     * Returns name.
+     * Returns readings.
      *
-     * @return the name
+     * @return the readings
      */
-    public String getName() {
-        return name;
+    public LinkedHashSet<SensorReading> getReadings() {
+        return readings;
     }
 
-    /**
-     * @see java.lang.Object#hashCode()
-     */
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((id == null) ? 0 : id.hashCode());
-        result = prime * result + ((name == null) ? 0 : name.hashCode());
-        result = prime * result + ((portfolio == null) ? 0 : portfolio.hashCode());
-        return result;
+    public void setReadings(LinkedHashSet<SensorReading> readings) {
+        this.readings = readings;
     }
 
-    /**
-     * @see java.lang.Object#equals(java.lang.Object)
-     */
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        Sensor other = (Sensor) obj;
-        if (id == null) {
-            if (other.id != null) {
-                return false;
-            }
-        } else if (!id.equals(other.id)) {
-            return false;
-        }
-        if (name == null) {
-            if (other.name != null) {
-                return false;
-            }
-        } else if (!name.equals(other.name)) {
-            return false;
-        }
-        if (portfolio == null) {
-            if (other.portfolio != null) {
-                return false;
-            }
-        } else if (!portfolio.equals(other.portfolio)) {
-            return false;
-        }
-        return true;
-    }
-
-    /**
-     * @see java.lang.Object#toString()
-     */
     @Override
     public String toString() {
-        return "Sensor [id=" + id + ", portfolio=" + portfolio + ", name=" + name + "]";
+        return "id : " + id + ", portfolio : " + portfolio + ", readings : " + readings;
     }
 }

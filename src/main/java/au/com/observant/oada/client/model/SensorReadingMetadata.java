@@ -5,22 +5,16 @@
  */
 package au.com.observant.oada.client.model;
 
-import java.util.Collections;
-import java.util.Set;
-
 /**
  *
  */
-public class SensorMetadata {
+public class SensorReadingMetadata {
 
     private String id;
-    private String portfolio;
     private String name;
-    private SensorLocation location;
     private String type;
-    private Set<SensorReadingMetadata> readings = Collections.emptySet();
-
-    // TODO - 7 Apr 2015, lauri - rest of the fields
+    private String unit;
+    private String format;
 
     /**
      * Returns id.
@@ -38,24 +32,6 @@ public class SensorMetadata {
      */
     public void setId(String id) {
         this.id = id;
-    }
-
-    /**
-     * Returns portfolio.
-     *
-     * @return the portfolio
-     */
-    public String getPortfolio() {
-        return portfolio;
-    }
-
-    /**
-     * Sets portfolio.
-     *
-     * @param portfolio the portfolio to set
-     */
-    public void setPortfolio(String portfolio) {
-        this.portfolio = portfolio;
     }
 
     /**
@@ -77,24 +53,6 @@ public class SensorMetadata {
     }
 
     /**
-     * Returns location.
-     *
-     * @return the location
-     */
-    public SensorLocation getLocation() {
-        return location;
-    }
-
-    /**
-     * Sets location.
-     *
-     * @param location the location to set
-     */
-    public void setLocation(SensorLocation location) {
-        this.location = location;
-    }
-
-    /**
      * Returns type.
      *
      * @return the type
@@ -113,21 +71,39 @@ public class SensorMetadata {
     }
 
     /**
-     * Returns readings.
+     * Returns unit.
      *
-     * @return the readings
+     * @return the unit
      */
-    public Set<SensorReadingMetadata> getReadings() {
-        return readings;
+    public String getUnit() {
+        return unit;
     }
 
     /**
-     * Sets readings.
+     * Sets unit.
      *
-     * @param readings the readings to set
+     * @param unit the unit to set
      */
-    public void setReadings(Set<SensorReadingMetadata> readings) {
-        this.readings = readings;
+    public void setUnit(String unit) {
+        this.unit = unit;
+    }
+
+    /**
+     * Returns format.
+     *
+     * @return the format
+     */
+    public String getFormat() {
+        return format;
+    }
+
+    /**
+     * Sets format.
+     *
+     * @param format the format to set
+     */
+    public void setFormat(String format) {
+        this.format = format;
     }
 
     /**
@@ -138,7 +114,6 @@ public class SensorMetadata {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((id == null) ? 0 : id.hashCode());
-        result = prime * result + ((portfolio == null) ? 0 : portfolio.hashCode());
         return result;
     }
 
@@ -156,19 +131,12 @@ public class SensorMetadata {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        SensorMetadata other = (SensorMetadata) obj;
+        SensorReadingMetadata other = (SensorReadingMetadata) obj;
         if (id == null) {
             if (other.id != null) {
                 return false;
             }
         } else if (!id.equals(other.id)) {
-            return false;
-        }
-        if (portfolio == null) {
-            if (other.portfolio != null) {
-                return false;
-            }
-        } else if (!portfolio.equals(other.portfolio)) {
             return false;
         }
         return true;
@@ -179,6 +147,7 @@ public class SensorMetadata {
      */
     @Override
     public String toString() {
-        return "SensorMetadata [id=" + id + ", portfolio=" + portfolio + ", name=" + name + "]";
+        return "SensorReading [id=" + id + ", name=" + name + ", type=" + type + ", unit=" + unit + ", format="
+                + format + "]";
     }
 }

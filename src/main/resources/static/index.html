@@ -21,7 +21,7 @@
                     <div id="user-authorized" class="navbar-right hidden">
                         <form class="navbar-form navbar-right" action="logout.do" method="post">
                             <div class="form-group">
-                                <label for="username" id="username">Username</label>
+                                <strong id="username"></strong>
                             </div>
                             <input type="hidden" name="_csrf" id="csrf-token"/>
                             <button type="submit" class="btn btn-default">Logout</button>
@@ -55,10 +55,11 @@
                 .done(function(data, statusText, xhr) {
                     $('#user-authorized').removeClass('hidden');
                     $('#user-unauthorized').addClass('hidden');
-                    $('#username').html('User: ' + data.username);
+    				var username = data.username.charAt(0).toUpperCase() + data.username.substring(1);
+    				$('#username').html($('#username').html() + username);
                     $('#content-authorized').removeClass('hidden');
                     $('#content-unauthorized').addClass('hidden');
-                    $('#user-greeting').html('Hi ' + data.username + '!');
+                    $('#user-greeting').html('Hi ' + username + '!');
                 })
                 .fail(function() {
                     $('#user-authorized').addClass('hidden');

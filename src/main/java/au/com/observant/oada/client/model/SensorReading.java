@@ -13,7 +13,7 @@ import java.util.LinkedHashSet;
 public class SensorReading {
 
     private String id;
-    private LinkedHashSet<SensorReadingEntry> readingEntries = new LinkedHashSet<SensorReadingEntry>();
+    private LinkedHashSet<SensorReadingEntry> entries = new LinkedHashSet<SensorReadingEntry>();
 
     public SensorReading() {
 
@@ -21,7 +21,7 @@ public class SensorReading {
 
     public SensorReading(String id, LinkedHashSet<SensorReadingEntry> readingEntries) {
         this.id = id;
-        this.readingEntries = readingEntries;
+        this.entries = readingEntries;
     }
 
     /**
@@ -33,12 +33,12 @@ public class SensorReading {
         return id;
     }
 
-    public void setReadingEntries(LinkedHashSet<SensorReadingEntry> readingEntries) {
-        this.readingEntries = readingEntries;
+    public void setReadingEntries(LinkedHashSet<SensorReadingEntry> entries) {
+        this.entries = entries;
     }
 
-    public LinkedHashSet<SensorReadingEntry> getReadingEntries() {
-        return readingEntries;
+    public LinkedHashSet<SensorReadingEntry> getEntries() {
+        return entries;
     }
 
     /**
@@ -88,6 +88,6 @@ public class SensorReading {
 
     @Override
     public String toString() {
-        return "id : " + id + ", readingEntries : \n" + readingEntries;
+        return "id : " + id + ", entries : \n" + entries;
     }
 }

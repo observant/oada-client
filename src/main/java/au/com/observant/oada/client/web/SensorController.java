@@ -61,14 +61,14 @@ public class SensorController {
         return sensors;
     }
 
-    @RequestMapping(value = "/resource/{portfolio}/{sensor}/data", method = RequestMethod.GET)
+    @RequestMapping(value = "/resources/{portfolio}/{sensor}/data", method = RequestMethod.GET)
     @ResponseBody
     public Sensor getSensor(@PathVariable("portfolio") String portfolio,
             @PathVariable("sensor") String sensor, Principal principal) {
         Validate.isTrue(StringUtils.isNotBlank(portfolio), "portfolio can not be blank");
         Validate.isTrue(StringUtils.isNotBlank(sensor), "sensor can not be blank");
         StringBuffer url = new StringBuffer(baseUrl);
-        url.append("resource/");
+        url.append("resources/");
         url.append(portfolio);
         url.append("/");
         url.append(sensor);

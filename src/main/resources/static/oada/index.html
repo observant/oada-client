@@ -180,7 +180,7 @@
 							data-key-value-tooltip="View Sensor Metadata"
 							data-target-modal="#display-modal"
 							data-modal-title="Sensor Metadata"
-							data-modal-url="resource/{portfolio}/{id}/meta">
+							data-modal-url="resources/{portfolio}/{id}/meta">
 							<div class="panel-heading">
 								<h4 class="panel-title">
 									<a data-toggle="collapse" data-parent="#accordion"
@@ -215,7 +215,7 @@
 								</div>
 							</div>
 						</div>
-                        <div id="sensor-panel" class="panel panel-default" data-rest-url="bookmarks/sensors" data-subsequent-rest-url="resource/{portfolio}/{id}/data">
+                        <div id="sensor-panel" class="panel panel-default" data-rest-url="bookmarks/sensors" data-subsequent-rest-url="resources/{portfolio}/{id}/data">
 							<div class="panel-heading">
 								<h4 class="panel-title">
 									<a data-toggle="collapse" data-parent="#accordion" href="#collapseSensor">Sensor Data</a><span class="endpoint-url"></span>
@@ -336,7 +336,7 @@
 						} else if(a.targetModal) {
 							processEndpointData(data, panel.find('.panel-body pre'), a.jsonKey, a.jsonAdditionalKeys, a.keyValueTooltip, $(a.targetModal), a.modalUrl);
 						} else if (a.subsequentRestUrl) {
-							someFunction(panel, data, panel.find('.panel-body pre'), panel.find('.form-control'));
+							sensorData(panel, data, panel.find('.panel-body pre'), panel.find('.form-control'));
 						} else{
 							panel.find('.panel-body pre').html(JSON.stringify(data,undefined,4));
 						}
@@ -379,10 +379,10 @@
                 });
 			});
 			
-			var someFunction = function(panel, data, destinationElement, formControl) {
+			var sensorData = function(panel, data, destinationElement, formControl) {
 				//get initial url
 				var initialUrl = "bookmarks/sensors";
-				var subsequentUrl = "resource/{portfolio}/{id}/data";
+				var subsequentUrl = "resources/{portfolio}/{id}/data";
 				if(getNumberOfResults(data) > 0) {
 					var keyValuePairs = [];
 					for(index in data) {
@@ -400,8 +400,8 @@
 					var url = insertValues(subsequentUrl, keyValuePairs[0]);
 					panel.find('.panel-title span').fadeOut(500, function(){
 						$(this).text("/api/" + url).fadeIn(500);
-						$('.loading-modal').fadeIn();
-				    	$('body').addClass('modal-open');
+						<!--$('.loading-modal').fadeIn();-->
+				    	<!--$('body').addClass('modal-open');-->
 					});
 					$.ajax('../' + url).done(function(data, statusText, xhr) {
 						data = JSON.stringify(data,undefined,4);
@@ -419,19 +419,18 @@
 						keyValuePair['id'] = $(this).find(':selected').html();
 						keyValuePair['portfolio'] = $(this).find(':selected').val();
 						var url = insertValues(subsequentUrl, keyValuePair);
-						$('.loading-modal').fadeIn();
-				    	$('body').addClass('modal-open');
+						<!--$('.loading-modal').fadeIn();-->
+				    	<!--$('body').addClass('modal-open');-->
 						panel.find('.panel-title span').fadeOut(500, function(){
 							$(this).text("/api/" + url).fadeIn(500);
-							$('.loading-modal').fadeIn();
+							<!--$('.loading-modal').fadeIn();-->
 						});
 						$.ajax('../' + url).done(function(data, statusText, xhr) {
 							data = JSON.stringify(data,undefined,4);
 							destinationElement.html(data);
 							Process(data);
 						}).fail( function(xhr, textStatus, errorThrown) {
-					        alert(xhr.responseText);
-					        alert(textStatus);
+					        destinationElement.html(xhr.responseText);
 					    }).always(function(){
 							$('.loading-modal').fadeOut();
 					    	$('body').removeClass('modal-open');

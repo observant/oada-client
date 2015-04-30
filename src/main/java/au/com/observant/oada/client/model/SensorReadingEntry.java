@@ -3,13 +3,13 @@ package au.com.observant.oada.client.model;
 public class SensorReadingEntry {
 
     private String timestamp;
-    private String value;
+    private Number value;
 
     public SensorReadingEntry() {
 
     }
 
-    public SensorReadingEntry(String timestamp, String value) {
+    public SensorReadingEntry(String timestamp, Number value) {
         this.timestamp = timestamp;
         this.value = value;
     }
@@ -18,7 +18,7 @@ public class SensorReadingEntry {
         return timestamp;
     }
 
-    public String getValue() {
+    public Number getValue() {
         return value;
     }
 

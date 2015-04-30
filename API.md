@@ -208,4 +208,4 @@ Response example
 | `readings.id` | `reading1` | ID of Sensor Reading  |
 | `readings.entries` |  | Entries of the Sensor Reading |
 | `readings.entries.timestamp`| '2015-04-22T14:00:00Z'| UTC Timestamp of the Sensor Reading Entry |
-| `readings.entries.value`| '49.7545'| Numberical value of the Sensor Reading Entry |
+| `readings.entries.value`| '49.7545'| Numerical value of the Sensor Reading Entry |

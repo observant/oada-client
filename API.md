@@ -146,7 +146,7 @@ Response example
 | Name | Example | Description |
 | ---- | ------- | ----------- |
 | `id` | `sensor1` | ID of the Sensor |
-| `protfolio` | `portfolio-1` | ID of the Portfolio |
+| `portfolio` | `portfolio-1` | ID of the Portfolio |
 | `name`| `Sensor 1-A` | Name of the sensor |
 | `location` | | Geolocation of the Sensor |
 | `location.lon` | `144.977967` | Longitude |
@@ -162,13 +162,50 @@ Response example
 
 ## Sensor Data - `/resources/{portfolioId}/{sensorId}/data`
 
-Responds to HTTP GET request. Returns meta for given sensor.
+Responds to HTTP GET request. Returns data for given sensor.
 
 Response example
 ```javascript
-[TBD]
+{
+    "id": "sensor1",
+    "portfolio": "portfolio-1",
+    "readings": [
+        {
+            "id": "reading1",
+            "entries": [
+                {
+                    "timestamp": "2015-04-22T14:00:00Z",
+                    "value": 49.7545
+                },
+                {
+                    "timestamp": "2015-04-22T15:00:00Z",
+                    "value": 50.1909
+                }
+            ]
+        },
+        {
+            "id": "reading2",
+            "entries": [
+                {
+                    "timestamp": "2015-04-22T14:00:00Z",
+                    "value": 0
+                },
+                {
+                    "timestamp": "2015-04-22T15:00:00Z",
+                    "value": 1
+                }
+            ]
+        }
+    ]
+}
 ```
 
 | Name | Example | Description |
 | ---- | ------- | ----------- |
-| TBD | | |
+| `id` | `sensor1` | ID of the Sensor |
+| `portfolio` | `portfolio-1` | ID of the Portfolio |
+| `readings` | | Readings of the Sensor |
+| `readings.id` | `reading1` | ID of Sensor Reading  |
+| `readings.entries` |  | Entries of the Sensor Reading |
+| `readings.entries.timestamp`| '2015-04-22T14:00:00Z'| UTC Timestamp of the Sensor Reading Entry |
+| `readings.entries.value`| '49.7545'| Numberical value of the Sensor Reading Entry |

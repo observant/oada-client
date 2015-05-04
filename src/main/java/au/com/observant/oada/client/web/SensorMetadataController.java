@@ -33,19 +33,14 @@ public class SensorMetadataController {
     @Autowired
     private OAuth2RestOperations restTemplate;
 
-    @RequestMapping(value = "/resource/{portfolio}/{sensor}/meta", method = RequestMethod.GET)
+    @RequestMapping(value = "/resources/{portfolio}/{sensor}/meta", method = RequestMethod.GET)
     @ResponseBody
     public SensorMetadata getMetadata(@PathVariable("portfolio") String portfolio,
             @PathVariable("sensor") String sensor, Principal principal) {
         Validate.isTrue(StringUtils.isNotBlank(portfolio), "portfolio can not be blank");
         Validate.isTrue(StringUtils.isNotBlank(sensor), "sensor can not be blank");
-        StringBuffer url = new StringBuffer(baseUrl);
-        url.append("resource/");
-        url.append(portfolio);
-        url.append("/");
-        url.append(sensor);
-        url.append("/meta");
-        SensorMetadata metadata = restTemplate.getForObject(url.toString(), SensorMetadata.class);
+        String url = baseUrl + "resources/" + portfolio + "/" + sensor + "/meta";
+        SensorMetadata metadata = restTemplate.getForObject(url, SensorMetadata.class);
         return metadata;
     }
 }

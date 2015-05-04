@@ -48,16 +48,12 @@ public class SensorController {
     public Set<SensorSummary> getSensors(
             @RequestParam(value = "portfolio", required = false) String portfolioId, Principal principal) {
         Optional<Principal> opt = Optional.ofNullable(principal);
-        StringBuffer url = new StringBuffer(baseUrl);
-        url.append("bookmarks/sensors");
+        String url = baseUrl + "bookmarks/sensors";
+
         @SuppressWarnings("unchecked")
-        Set<SensorSummary> sensors = opt
-                .map(
-                        p -> restTemplate.getForObject(
-                                portfolioId == null ? url.toString() : url.append("?portfolio=").append(portfolioId)
-                                        .toString(),
-                                Set.class))
-                                .orElseThrow(() -> new AccessDeniedException("Unauthorized"));
+        Set<SensorSummary> sensors = opt.map(
+                p -> restTemplate.getForObject(portfolioId == null ? url : (url + "?portfolio=" + portfolioId),
+                        Set.class)).orElseThrow(() -> new AccessDeniedException("Unauthorized"));
         return sensors;
     }
 
@@ -67,14 +63,8 @@ public class SensorController {
             @PathVariable("sensor") String sensor, Principal principal) {
         Validate.isTrue(StringUtils.isNotBlank(portfolio), "portfolio can not be blank");
         Validate.isTrue(StringUtils.isNotBlank(sensor), "sensor can not be blank");
-        StringBuffer url = new StringBuffer(baseUrl);
-        url.append("resources/");
-        url.append(portfolio);
-        url.append("/");
-        url.append(sensor);
-        url.append("/data");
-        Sensor result = restTemplate.getForObject(url.toString(), Sensor.class);
-        System.out.println(result);
+        String url = baseUrl + "resources/" + portfolio + "/" + sensor + "/data";
+        Sensor result = restTemplate.getForObject(url, Sensor.class);
         return result;
     }
 }

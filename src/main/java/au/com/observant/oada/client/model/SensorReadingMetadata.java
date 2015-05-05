@@ -15,6 +15,7 @@ public class SensorReadingMetadata {
     private String type;
     private String unit;
     private String format;
+    private String observing;
 
     /**
      * Returns id.
@@ -107,6 +108,24 @@ public class SensorReadingMetadata {
     }
 
     /**
+     * Returns observing.
+     *
+     * @return the observing
+     */
+    public String getObserving() {
+        return observing;
+    }
+
+    /**
+     * Sets observing.
+     *
+     * @param observing the observing to set
+     */
+    public void setObserving(String observing) {
+        this.observing = observing;
+    }
+
+    /**
      * @see java.lang.Object#hashCode()
      */
     @Override
@@ -148,6 +167,6 @@ public class SensorReadingMetadata {
     @Override
     public String toString() {
         return "SensorReading [id=" + id + ", name=" + name + ", type=" + type + ", unit=" + unit + ", format="
-                + format + "]";
+                + format + ", observing=" + observing + "]";
     }
 }

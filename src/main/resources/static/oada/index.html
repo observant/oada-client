@@ -499,12 +499,12 @@
 						$.ajax('../' + url).done(function(data, statusText, xhr) {
 							data = JSON.stringify(data,undefined,4);
 							Process(data);
-							$(document.body).animate({
-								'scrollTop':   panel.offset().top - 5
-							}, 500, 'easeInOutCirc');
 						}).fail(function(xhr, textStatus, errorThrown) {
 					        Process(xhr.responseText);
 					    }).always(function(){
+							$(document.body).animate({
+								'scrollTop':   panel.offset().top - 5
+							}, 500, 'easeInOutCirc');
 							$('.loading-modal').fadeOut();
 					    	$('body').removeClass('modal-open');
 						});

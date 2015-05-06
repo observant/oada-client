@@ -98,7 +98,7 @@
 				height: 40px;
 				width: 40px;
 				position: fixed;
-				bottom: 100px;
+				bottom: 50px;
 				left: 50px;
 				z-index: 10;
 				box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
@@ -413,9 +413,11 @@
 					}).always(function() {
 						$('.loading-modal').fadeOut();
 				    	$('body').removeClass('modal-open');
-						$(document.body).animate({
-						    'scrollTop':   panel.offset().top - 5
-						}, 500, 'easeInOutCirc');
+				    	setTimeout(function(){
+							$(document.body).animate({
+						    	'scrollTop':   panel.offset().top - 5
+							}, 500, 'easeInOutCirc');
+						}, 300);
 					});
 				});
 				$(this).on('hide.bs.collapse',function(e) {
@@ -494,7 +496,6 @@
 						panel.find('.panel-title span').fadeOut(500, function(){
 							$(this).text("/api/" + url).fadeIn(500);
 						});
-						Process(JSON.stringify("loading...",undefined));
 						$.ajax('../' + url).done(function(data, statusText, xhr) {
 							data = JSON.stringify(data,undefined,4);
 							Process(data);

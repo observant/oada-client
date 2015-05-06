@@ -602,8 +602,8 @@
 						targetModal.find('.modal-body-pre').html(json);
 						targetModal.find('#modalUrl').html("/api/" + completeUrl);
 						targetModal.modal('show');
-					}).fail(function() {
-						alert("Error: Unable to load Sensor Metadata");
+					}).fail(function(xhr, textStatus, errorThrown) {
+						alert("Error: Unable to load Sensor Metadata\n\n" + xhr.responseText);
 					}).always(function() {
 						$('.loading-modal').fadeOut()
 						$('body').removeClass('modal-open');

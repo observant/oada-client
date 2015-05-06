@@ -86,6 +86,47 @@
 				margin-bottom : 2px;
 				margin-left:3px;
 			}
+
+			a {
+				<!--color: #e86256;-->
+				text-decoration: none;
+			}
+
+
+			.cd-top {
+				display: inline-block;
+				height: 40px;
+				width: 40px;
+				position: fixed;
+				bottom: 100px;
+				left: 50px;
+				z-index: 10;
+				box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+				/* image replacement properties */
+				overflow: hidden;
+				text-indent: 100%;
+				white-space: nowrap;
+				background: rgba(174, 220, 242, 0.8) url(cd-top-arrow.svg) no-repeat center 50%;
+				visibility: hidden;
+				opacity: 0;
+				-webkit-transition: opacity .3s 0s, visibility 0s .3s;
+				-moz-transition: opacity .3s 0s, visibility 0s .3s;
+				transition: opacity .3s 0s, visibility 0s .3s;
+			}
+			.cd-top.cd-is-visible, .cd-top.cd-fade-out, .no-touch .cd-top:hover {
+				-webkit-transition: opacity .3s 0s, visibility 0s 0s;
+				-moz-transition: opacity .3s 0s, visibility 0s 0s;
+				transition: opacity .3s 0s, visibility 0s 0s;
+			}
+			.cd-top.cd-is-visible {
+				/* the button becomes visible */
+				visibility: visible;
+				opacity: 1;
+			}
+			.cd-top.cd-fade-out {
+				/* if the user keeps scrolling down, the button is out of focus and becomes less visible */
+				opacity: .5;
+			}
         </style>
     </head>
     <body id="top">
@@ -266,9 +307,37 @@
 		    </div>
 		  </div>
 		</div>
+
+		<a href="#0" class="cd-top">Top</a>
+
 		<!-- End -->
 		<div class="loading-modal"></div>
 		<script>
+			//browser window scroll (in pixels) after which the "back to top" link opacity is reduced
+			offset_opacity = 1200,
+			//duration of the top scrolling animation (in ms)
+			scroll_top_duration = 500,
+			//grab the "back to top" link
+			$back_to_top = $('.cd-top');
+
+			//hide or show the "back to top" link
+			$(window).scroll(function(){
+				if($('.open-accordian-section').offset()) {
+					( $(this).scrollTop() > $('.open-accordian-section').offset().top ) ? $back_to_top.addClass('cd-is-visible') : $back_to_top.removeClass('cd-is-visible cd-fade-out');
+					if( $(this).scrollTop() > offset_opacity ) {
+						$back_to_top.addClass('cd-fade-out');
+					}
+				}
+			});
+
+			//smooth scroll to top
+			$back_to_top.on('click', function(event){
+				event.preventDefault();
+				$('body,html').animate({
+					scrollTop: $('.open-accordian-section').offset().top - 5 ,
+					}, scroll_top_duration, 'easeInOutCirc'
+				);
+			});
 		
 		 	$(document).bind("ajaxSend", function(){
 			  // $body.addClass("loading");
@@ -325,6 +394,7 @@
 			$('.panel').each(function() {
 				$(this).on('show.bs.collapse',function(e) {
 					var panel = $(this);
+					panel.addClass("open-accordian-section");
                 	var a = getDataAttributesObject(panel, "data-", true, true);
 					panel.find('.panel-title span').text("/api/" + panel.attr('data-rest-url')).fadeIn(500);
 					panel.find('.panel-body pre').html("loading...");
@@ -350,6 +420,7 @@
 				});
 				$(this).on('hide.bs.collapse',function(e) {
 					$(this).find('.panel-title span').hide();
+					$(this).removeClass("open-accordian-section");
 					$(document.body).animate({
 					    'scrollTop':   $('#bookmarks-panel').offset().top - 5
 					}, 500, 'easeInOutCirc'); 
@@ -400,14 +471,13 @@
 					var url = insertValues(subsequentUrl, keyValuePairs[0]);
 					panel.find('.panel-title span').fadeOut(500, function(){
 						$(this).text("/api/" + url).fadeIn(500);
-						<!--$('.loading-modal').fadeIn();-->
-				    	<!--$('body').addClass('modal-open');-->
 					});
 					$.ajax('../' + url).done(function(data, statusText, xhr) {
 						data = JSON.stringify(data,undefined,4);
-						destinationElement.html(data);
 						Process(data);
-					}).always(function(){
+						$(".loading-modal").fadeOut();
+				    	$("body").removeClass('modal-open');
+					}).fail(function(){
 						$('.loading-modal').fadeOut();
 				    	$('body').removeClass('modal-open');
 					});
@@ -419,18 +489,20 @@
 						keyValuePair['id'] = $(this).find(':selected').html();
 						keyValuePair['portfolio'] = $(this).find(':selected').val();
 						var url = insertValues(subsequentUrl, keyValuePair);
-						<!--$('.loading-modal').fadeIn();-->
-				    	<!--$('body').addClass('modal-open');-->
+						$('.loading-modal').fadeIn();
+				    	$('body').addClass('modal-open');
 						panel.find('.panel-title span').fadeOut(500, function(){
 							$(this).text("/api/" + url).fadeIn(500);
-							<!--$('.loading-modal').fadeIn();-->
 						});
+						Process(JSON.stringify("loading...",undefined));
 						$.ajax('../' + url).done(function(data, statusText, xhr) {
 							data = JSON.stringify(data,undefined,4);
-							destinationElement.html(data);
 							Process(data);
-						}).fail( function(xhr, textStatus, errorThrown) {
-					        destinationElement.html(xhr.responseText);
+							$(document.body).animate({
+								'scrollTop':   panel.offset().top - 5
+							}, 500, 'easeInOutCirc');
+						}).fail(function(xhr, textStatus, errorThrown) {
+					        Process(xhr.responseText);
 					    }).always(function(){
 							$('.loading-modal').fadeOut();
 					    	$('body').removeClass('modal-open');
@@ -469,7 +541,10 @@
 						e.preventDefault();
 						var dataAttr = attributes["rest-url-"+value];
 						$('.panel-collapse.in').collapse('hide');
-						$('#'+dataAttr).find('.panel-collapse').collapse('show');
+						setTimeout(function(){
+							$('#'+dataAttr).find('.panel-collapse').collapse('show');
+						}, 500);
+
 	           		});
 				});
 			}
@@ -526,6 +601,11 @@
 						targetModal.find('.modal-body-pre').html(json);
 						targetModal.find('#modalUrl').html("/api/" + completeUrl);
 						targetModal.modal('show');
+					}).fail(function() {
+						alert("Error: Unable to load Sensor Metadata");
+					}).always(function() {
+						$('.loading-modal').fadeOut()
+						$('body').removeClass('modal-open');
 					});
 				});
 			}

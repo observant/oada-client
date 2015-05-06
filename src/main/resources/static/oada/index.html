@@ -309,7 +309,6 @@
 		</div>
 
 		<a href="#0" class="cd-top">Top</a>
-
 		<!-- End -->
 		<div class="loading-modal"></div>
 		<script>
@@ -402,7 +401,7 @@
 			    	$('body').addClass('modal-open');
 					$.ajax('../' + a.restUrl).done(function(data, statusText, xhr) {
 						if(a.addUrlTargets) {
-							applyAccordianTargets(panel.find('.panel-body pre'), data, getDataAttributesObject(panel, "data-target-", true, false))
+							applyAccordionTargets(panel.find('.panel-body pre'), data, getDataAttributesObject(panel, "data-target-", true, false))
 						} else if(a.targetModal) {
 							processEndpointData(data, panel.find('.panel-body pre'), a.jsonKey, a.jsonAdditionalKeys, a.keyValueTooltip, $(a.targetModal), a.modalUrl);
 						} else if (a.subsequentRestUrl) {
@@ -531,7 +530,7 @@
                 	}
 			}
 
-			var applyAccordianTargets = function(destinationElement, text, attributes) {
+			var applyAccordionTargets = function(destinationElement, text, attributes) {
 				var text = JSON.stringify(text,undefined,4);
 				text = applyTag(text, getRegexMatches(text, jsonKeyValueRegex("name")), "a", "href='#'");
 				destinationElement.html(text);
@@ -597,7 +596,6 @@
 					var completeUrl = Object.keys(keyValuePairs).length === 0 ? url : insertValues(url, keyValuePairs);
 					$.ajax('../' + completeUrl).done(function(data, statusText, xhr) {
 				    	$('.loading-modal').fadeOut();
-				    	$('body').removeClass('modal-open');
 						var json = JSON.stringify(data,undefined,4);
 						targetModal.find('.modal-body-pre').html(json);
 						targetModal.find('#modalUrl').html("/api/" + completeUrl);
@@ -606,7 +604,6 @@
 						alert("Error: Unable to load Sensor Metadata\n\n" + xhr.responseText);
 					}).always(function() {
 						$('.loading-modal').fadeOut()
-						$('body').removeClass('modal-open');
 					});
 				});
 			}

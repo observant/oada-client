@@ -131,7 +131,9 @@ Response example
           "type" : "double",
           "unit" : "%",
           "format" : "0.0",
-          "observing": "soil_moisture"
+          "observing": "soil_moisture",
+          "label": "Soli Moisture",
+          "secondaryLabel": "10 cm"
       },
       {
           "id" : "reading2",
@@ -140,6 +142,8 @@ Response example
           "unit" : "°C",
           "format" : "#0.00",
           "observing": "soil_temperature"
+          "label": "Soli Temperature",
+          "secondaryLabel": "20 cm"
       },
   ]
 }
@@ -162,6 +166,8 @@ Response example
 | `readings.unit`| '%'| Unit of the Sensor Reading |
 | `readings.format`| '#0.00'| Format of the Sensor Reading |
 | `readings.observing` | `soil_moisture` | Type of observation. Currently supported types are `soil_moisture`, `soil_temperature`, `soil_ec` |
+| `readings.label`| `Soil Moisture` | Primary label of the reading |
+| `readings.secondaryLabel`| `10 cm` | Secondary label of the reading |
 
 ## Sensor Data - `/resources/{portfolioId}/{sensorId}/data`
 

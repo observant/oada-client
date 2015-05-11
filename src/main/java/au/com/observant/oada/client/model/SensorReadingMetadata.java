@@ -16,6 +16,8 @@ public class SensorReadingMetadata {
     private String unit;
     private String format;
     private String observing;
+    private String label;
+    private String secondaryLabel;
 
     /**
      * Returns id.
@@ -126,6 +128,42 @@ public class SensorReadingMetadata {
     }
 
     /**
+     * Returns label.
+     *
+     * @return the label
+     */
+    public String getLabel() {
+        return label;
+    }
+
+    /**
+     * Sets label.
+     *
+     * @param label the label to set
+     */
+    public void setLabel(String label) {
+        this.label = label;
+    }
+
+    /**
+     * Returns secondaryLabel.
+     *
+     * @return the secondaryLabel
+     */
+    public String getSecondaryLabel() {
+        return secondaryLabel;
+    }
+
+    /**
+     * Sets secondaryLabel.
+     *
+     * @param secondaryLabel the secondaryLabel to set
+     */
+    public void setSecondaryLabel(String secondaryLabel) {
+        this.secondaryLabel = secondaryLabel;
+    }
+
+    /**
      * @see java.lang.Object#hashCode()
      */
     @Override
@@ -167,6 +205,6 @@ public class SensorReadingMetadata {
     @Override
     public String toString() {
         return "SensorReading [id=" + id + ", name=" + name + ", type=" + type + ", unit=" + unit + ", format="
-                + format + ", observing=" + observing + "]";
+                + format + ", observing=" + observing + ", label=" + label + ", secondaryLabel=" + secondaryLabel + "]";
     }
 }

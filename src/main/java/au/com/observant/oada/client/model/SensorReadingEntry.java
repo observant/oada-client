@@ -1,15 +1,18 @@
 package au.com.observant.oada.client.model;
 
+import java.math.BigDecimal;
+
 public class SensorReadingEntry {
 
     private String timestamp;
-    private Number value;
+
+    private Double value;
 
     public SensorReadingEntry() {
 
     }
 
-    public SensorReadingEntry(String timestamp, Number value) {
+    public SensorReadingEntry(String timestamp, Double value) {
         this.timestamp = timestamp;
         this.value = value;
     }
@@ -18,8 +21,12 @@ public class SensorReadingEntry {
         return timestamp;
     }
 
-    public Number getValue() {
+    public Double getValue() {
         return value;
+    }
+
+    public void setValue(Double value) {
+        this.value = value;
     }
 
     @Override

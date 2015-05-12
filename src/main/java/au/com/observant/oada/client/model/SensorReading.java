@@ -14,10 +14,8 @@ public class SensorReading {
 
     private String id;
     private LinkedHashSet<SensorReadingEntry> entries = new LinkedHashSet<SensorReadingEntry>();
-
-    public SensorReading() {
-
-    }
+    private String errorCode;
+    private String errorReason;
 
     public SensorReading(String id, LinkedHashSet<SensorReadingEntry> readingEntries) {
         this.id = id;
@@ -33,22 +31,44 @@ public class SensorReading {
         return id;
     }
 
-    public void setReadingEntries(LinkedHashSet<SensorReadingEntry> entries) {
-        this.entries = entries;
+    /**
+     * Sets id.
+     *
+     * @param id the id to set
+     */
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public LinkedHashSet<SensorReadingEntry> getEntries() {
         return entries;
     }
 
-    /**
-     * Sets id.
-     *
-     * @param id the id to set
-     */
-    public void setId(String id) {
-        this.id = id;
+    public void setEntries(LinkedHashSet<SensorReadingEntry> entries) {
+        this.entries = entries;
     }
+
+    public String getErrorCode() {
+        return errorCode;
+    }
+
+    public void setErrorCode(String errorCode) {
+        this.errorCode = errorCode;
+    }
+
+    public String getErrorReason() {
+        return errorReason;
+    }
+
+    public void setErrorReason(String errorReason) {
+        this.errorReason = errorReason;
+    }
+
+    public SensorReading() {
+
+    }
+
 
     /**
      * @see java.lang.Object#hashCode()
@@ -88,6 +108,6 @@ public class SensorReading {
 
     @Override
     public String toString() {
-        return "id : " + id + ", entries : \n" + entries;
+        return "id : " + id + ", entries : \n" + entries + "\nerrorCode : " + errorCode + "\nerrorReason : " + errorReason;
     }
 }

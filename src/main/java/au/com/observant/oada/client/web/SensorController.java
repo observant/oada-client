@@ -9,6 +9,7 @@ import java.security.Principal;
 import java.util.Optional;
 import java.util.Set;
 
+import au.com.observant.oada.client.model.*;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.Validate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,9 +22,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-import au.com.observant.oada.client.model.Sensor;
-import au.com.observant.oada.client.model.SensorSummary;
 
 /**
  * End points to query {@link SensorSummary}s.

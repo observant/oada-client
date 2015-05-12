@@ -409,6 +409,9 @@
 						} else{
 							panel.find('.panel-body pre').html(JSON.stringify(data,undefined,4));
 						}
+					}).fail(function(xhr, textStatus, errorThrown) {
+						<!--alert(xhr.access);-->
+						<!--alert("fail");-->
 					}).always(function() {
 						$('.loading-modal').fadeOut();
 				    	$('body').removeClass('modal-open');
@@ -424,7 +427,7 @@
 					$(this).removeClass("open-accordian-section");
 					$(document.body).animate({
 					    'scrollTop':   $('#bookmarks-panel').offset().top - 5
-					}, 500, 'easeInOutCirc'); 
+					}, 500, 'easeInOutCirc');
 					//or show the bookmarks $('#bookmarks-panel').find('.panel-collapse').collapse('show');
 					$(document.body).css("min-height",1400);
 				});
@@ -602,6 +605,7 @@
 						targetModal.modal('show');
 					}).fail(function(xhr, textStatus, errorThrown) {
 						alert("Error: Unable to load Sensor Metadata\n\n" + xhr.responseText);
+			    		$('body').removeClass('modal-open');
 					}).always(function() {
 						$('.loading-modal').fadeOut()
 					});

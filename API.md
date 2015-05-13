@@ -165,7 +165,7 @@ Response example
 | `readings.type`| 'double'| Data type of the Sensor Reading |
 | `readings.unit`| '%'| Unit of the Sensor Reading |
 | `readings.format`| '#0.00'| Format of the Sensor Reading |
-| `readings.observing` | `soil_moisture` | Type of observation. Currently supported types are `soil_moisture`, `soil_temperature`, `soil_ec` |
+| `readings.observing` | `soil_moisture` | Type of observation. Currently supported types are `soil_moisture`, `soil_temperature`, `soil_ec`  |
 | `readings.label`| `Soil Moisture` | Primary label of the reading |
 | `readings.secondaryLabel`| `10 cm` | Secondary label of the reading |
 
@@ -218,3 +218,5 @@ Response example
 | `readings.entries` |  | Entries of the Sensor Reading |
 | `readings.entries.timestamp`| '2015-04-22T14:00:00Z'| UTC Timestamp of the Sensor Reading Entry |
 | `readings.entries.value`| '49.7545'| Numerical value of the Sensor Reading Entry |
+| `readings.entries.errorCode`| '603'| 3 digit error code |
+| `readings.entries.errorReason`| 'No named Sensor found for this field'| The cause of the error |

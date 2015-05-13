@@ -22,10 +22,10 @@ Response example
     }
 ]
 ```
-| Name | Example | Description |
-| ---- | ------- | ----------- |
-| `name` | `portfolios` | Name of the bookmark |
-| `url` | `https://hostname/api/bookmarks/portfolios` | Full URL of the bookmark |
+| Name | Example | Description | Nullable
+| ---- | ------- | ----------- | --------
+| `name` | `portfolios` | Name of the bookmark | no
+| `url` | `https://hostname/api/bookmarks/portfolios` | Full URL of the bookmark | no
 
 ## User details - `/users/me`
 
@@ -45,13 +45,13 @@ Response example
     "grantType": "authorization_code"
 }
 ```
-| Name | Example | Description |
-| ---- | ------- | ----------- |
-| `username` | `user.name` | Username in Observant system |
-| `scope` | `soil-moisture` | List of scopes User has granted access to for Client application | 
-| `resourceIds` | `oada/api` | List of resources the Client has access to in Observant system |
-| `clinetId` | `TestFarms` | Client application ID in Observant system |
-| `grantType` | `authorization_code` | Grant type in use |
+| Name | Example | Description | Nullable
+| ---- | ------- | ----------- | --------
+| `username` | `user.name` | Username in Observant system | no
+| `scope` | `soil-moisture` | List of scopes User has granted access to for Client application | no
+| `resourceIds` | `oada/api` | List of resources the Client has access to in Observant system | no
+| `clinetId` | `TestFarms` | Client application ID in Observant system | no
+| `grantType` | `authorization_code` | Grant type in use | no
 
 ## Portfolios - `/api/bookmarks/portfolios`
 
@@ -71,10 +71,10 @@ Response example
 ]
 ```
 
-| Name | Example | Description |
-| ---- | ------- | ----------- |
-| `id` | `portfolio-1` | ID of the Portfolio |
-| `name`| `Portfolio 1` | Name of the Protfolio |
+| Name | Example | Description | Nullable
+| ---- | ------- | ----------- | --------
+| `id` | `portfolio-1` | ID of the Portfolio | no
+| `name`| `Portfolio 1` | Name of the Protfolio | no
 
 ## Sensors - `/api/bookmarks/sensors`
 
@@ -106,11 +106,11 @@ Response example
 ]
 ```
 
-| Name | Example | Description |
-| ---- | ------- | ----------- |
-| `id` | `sensor1` | ID of the Sensor |
-| `portfolio` | `portfolio-1`| ID of the Protfolio |
-| `name` | `Sensor-1A` | Name of the Sensor |
+| Name | Example | Description | Nullable
+| ---- | ------- | ----------- | --------
+| `id` | `sensor1` | ID of the Sensor | no
+| `portfolio` | `portfolio-1`| ID of the Protfolio | no
+| `name` | `Sensor-1A` | Name of the Sensor | no
 
 ## Sensor Metadata - `/resources/{portfolioId}/{sensorId}/meta`
 
@@ -149,25 +149,25 @@ Response example
 }
 ```
 
-| Name | Example | Description |
-| ---- | ------- | ----------- |
-| `id` | `sensor1` | ID of the Sensor |
-| `portfolio` | `portfolio-1` | ID of the Portfolio |
-| `name`| `Sensor 1-A` | Name of the sensor |
-| `location` | | Geolocation of the Sensor |
-| `location.lon` | `144.977967` | Longitude |
-| `location.lat` | `-37.797059` | Latitude |
-| `location.elv` | `3.9` | Elevation |
-| `type` | `Soil Moisture` | Type of the Sensor |
-| `readings` | | Readings of the Sensor |
-| `readings.id` | `reading1` | ID of Sensor Reading  |
-| `readings.name` | `Moisture` | Name of Sensor Reading |
-| `readings.type`| 'double'| Data type of the Sensor Reading |
-| `readings.unit`| '%'| Unit of the Sensor Reading |
-| `readings.format`| '#0.00'| Format of the Sensor Reading |
-| `readings.observing` | `soil_moisture` | Type of observation. Currently supported types are `soil_moisture`, `soil_temperature`, `soil_ec`  |
-| `readings.label`| `Soil Moisture` | Primary label of the reading |
-| `readings.secondaryLabel`| `10 cm` | Secondary label of the reading |
+| Name | Example | Description | Nullable
+| ---- | ------- | ----------- | --------
+| `id` | `sensor1` | ID of the Sensor | no
+| `portfolio` | `portfolio-1` | ID of the Portfolio | no
+| `name`| `Sensor 1-A` | Name of the sensor | no
+| `location` | | Geolocation of the Sensor | no
+| `location.lon` | `144.977967` | Longitude | no
+| `location.lat` | `-37.797059` | Latitude | no
+| `location.elv` | `3.9` | Elevation | no
+| `type` | `Soil Moisture` | Type of the Sensor | no
+| `readings` | | Readings of the Sensor | no
+| `readings.id` | `reading1` | ID of Sensor Reading  | no
+| `readings.name` | `Moisture` | Name of Sensor Reading | no
+| `readings.type`| 'double'| Data type of the Sensor Reading | no
+| `readings.unit`| '%'| Unit of the Sensor Reading | no
+| `readings.format`| '#0.00'| Format of the Sensor Reading | no
+| `readings.observing` | `soil_moisture` | Type of observation. Currently supported types are `soil_moisture`, `soil_temperature`, `soil_ec`  | yes (null when Sensors are not part of a Sensor group)
+| `readings.label`| `Soil Moisture` | Primary label of the reading | no
+| `readings.secondaryLabel`| `10 cm` | Secondary label of the reading | no
 
 ## Sensor Data - `/resources/{portfolioId}/{sensorId}/data`
 
@@ -209,14 +209,14 @@ Response example
 }
 ```
 
-| Name | Example | Description |
-| ---- | ------- | ----------- |
-| `id` | `sensor1` | ID of the Sensor |
-| `portfolio` | `portfolio-1` | ID of the Portfolio |
-| `readings` | | Readings of the Sensor |
-| `readings.id` | `reading1` | ID of Sensor Reading  |
-| `readings.entries` |  | Entries of the Sensor Reading |
-| `readings.entries.timestamp`| '2015-04-22T14:00:00Z'| UTC Timestamp of the Sensor Reading Entry |
-| `readings.entries.value`| '49.7545'| Numerical value of the Sensor Reading Entry |
-| `readings.entries.errorCode`| '603'| 3 digit error code |
-| `readings.entries.errorReason`| 'No named Sensor found for this field'| The cause of the error |
+| Name | Example | Description | Nullable
+| ---- | ------- | ----------- | --------
+| `id` | `sensor1` | ID of the Sensor | no
+| `portfolio` | `portfolio-1` | ID of the Portfolio | no
+| `readings` | | Readings of the Sensor | no
+| `readings.id` | `reading1` | ID of Sensor Reading  | no
+| `readings.entries` |  | Entries of the Sensor Reading | no
+| `readings.entries.timestamp`| '2015-04-22T14:00:00Z'| UTC Timestamp of the Sensor Reading Entry | no
+| `readings.entries.value`| '49.7545'| Numerical value of the Sensor Reading Entry | yes (null when reading entry value does not exist yet)
+| `readings.entries.errorCode`| '603'| 3 digit error code | yes (null when no error)
+| `readings.entries.errorReason`| 'No named Sensor found for this field'| The cause of the error | yes (null when no error)

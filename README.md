@@ -14,12 +14,9 @@ Observant OpenLink API version 1.0 provides access to data collected by Soil and
 * EnviroPro
 * Stevens Hydra Probe II
 * Decagon GS3
-* Watermark
 
 ### Supported Weather Monitoring Sensors
 * Davis Weather Station
-* Davis Rain Bucket
-* E+E RHT Sensor
 
 ## Documentation
 

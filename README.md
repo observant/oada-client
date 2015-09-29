@@ -30,4 +30,4 @@ Observant OpenLink API version 1.0 provides access to data collected by Soil and
 
 ## Contact
 
-OpenLing API related questions: openlink@observant.net.
+OpenLink API related questions: openlink@observant.net.

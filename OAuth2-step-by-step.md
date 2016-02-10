@@ -45,18 +45,27 @@ Important is the code appended to the callback URL. We can copy the value `hgMa5
 ### Token exchange
 We need to send HTTP POST request to Observant Oauth2 token URL using specific parameters to exchange temporary code to access token. This request has to contain client ID, client secret and exact callback URL used in previous request to authenticate client server. In current case we are going to do this manually using curl from command line.
 
+##### Request
 ```
 $ curl -v https://myService:mySecret123@test.obsrv.it/uaa/oauth/token -d grant_type=authorization_code -d client_id=myService -d redirect_uri=https://localhost:1888/myservice/oada/ -d code=hgMa5a
+```
+
+##### Response
+```
 {"access_token":"564810ff-7bd6-4ff7-a3bb-f76b0a0c28be","token_type":"bearer","refresh_token":"e630def6-2b33-40e0-af74-e51f52a3c11d","expires_in":86399,"scope":"soil-moisture"}
 ```
 
-Response body is on the last line. Important part from the response is `"access_token":"564810ff-7bd6-4ff7-a3bb-f76b0a0c28be"`. Using this value we can now issue request to Observant OADA endpoints without any other authentication information. We can store token information for later use. For example we might want to access some resources using scheduled background tasks. Same token can be used as many times as needed until the expiration time.
+The important part from the response is `"access_token":"564810ff-7bd6-4ff7-a3bb-f76b0a0c28be"`. Using this value we can now issue request to Observant OADA endpoints without any other authentication information. We can store token information for later use. For example we might want to access some resources using scheduled background tasks. Same token can be used as many times as needed until the expiration time.
 
 ### Accessing OAuth2 protected resources
 
 To access protected resources we can send HTTP GET request with OAuth2 specific header. Once again we can use curl to issue the request
+##### Request
 ```
 $ curl -v -H "Authorization: Bearer 564810ff-7bd6-4ff7-a3bb-f76b0a0c28be" https://test.obsrv.it/api/users/me
+```
+##### Response
+```
 {"username":"bob","scope":["soil-moisture"],"resourceIds":["oada/api"],"clientId":"myService","grantType":"authorization_code"}
 ```
 Response body contains JSON document with details about the client, user and grant information.

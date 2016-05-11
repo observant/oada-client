@@ -23,3 +23,18 @@ Most likely you have to login to the Client application time to time. This is ma
 * There is no need to disclose User credentials to Client application.
 * Client application has no need to handle User account changes like password renewals etc.
 * User can explicitly grant and revoke access to data shared by Data Provider.
+
+## Can the path component of the url change if the domain is kept the same?
+The redirect url registered with Observant must contain the scheme, domain and path components. If the url registered with Observant is https://a.domain.name/path then any subpath will also be accepted, e.g. https://a.domain.name/path/subpath.
+
+## Can query parameters be sent in the redirect url?
+The OAuth protocol allows for the transmission of additional state (otherwise achieved using query parameters, e.g. ?param=value) using a single 'state' query parameter. In order to pass an 'id' parameter as part of the redirect url, when hitting the 'oauth/authorize' endpoint, the id and it's value would need to be passed as the value of the state parameter. For example, see the following HTTP GET request and the resulting redirect url:
+
+####Request
+https://test.obsrv.it/uaa/oauth/authorize?response_type=code&client_id=TestFarms&redirect_uri=http%3A%2F%2Flocalhost%3A9977%2Ftestfarms%2Foada&state=id%3D123
+
+####Resulting redirect Url
+http://localhost:9977/testfarms/oada?code=tWjSsu&state=id%3D123
+
+
+

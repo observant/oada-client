@@ -14,7 +14,7 @@ Once a client is registered manually, the programatic authentication is possible
 Request Parameter | Description | Value
 ------------------|-------------|--------
 ￼￼￼￼client_id|Contains the unique client identifier obtained from Observant|${client_id}
-redirect_url | Contains the url used to redirect back to the client application (this callback url should be registered with Observant and must use the HTTPS protocol) | ${client_url}
+redirect_url | Contains the url used to redirect back to the client application (this callback url should be registered with Observant and must use the HTTPS protocol). The sent url must at least match the url, including the path, registered with Observant. For more details see [FAQs](https://github.com/observant/oada-client/blob/master/FAQ.md#can-the-path-component-of-the-url-change-if-the-domain-is-kept-the-same) . | ${client_url}
 response_type | Contains the response type code | code
 
 ### ￼User Stage  

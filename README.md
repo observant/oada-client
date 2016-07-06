@@ -22,7 +22,7 @@ Observant OpenLink API version 1.0 provides access to data collected by Soil and
 #### Soil Monitoring Sensors
 * Soil Moisture
 * Soil Temperature
-* Soil Electo-conductivity
+* Soil Electro-conductivity
 
 #### Weather Monitoring Sensors
 * Temperature (Air)

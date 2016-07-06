@@ -31,8 +31,10 @@ Observant OpenLink API version 1.0 provides access to data collected by Soil and
 * Solar Radiation
 * UV index
 * Rainfall Summary
-* Wind 5 Minutely Average
-* Wind 10 Minutely Gust
+* Wind Speed
+* Wind Direction (5 Minutely Average)
+* Gust Speed
+* Gust Direction (10 Minutely Average)
 
 ## Documentation
 

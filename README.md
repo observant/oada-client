@@ -18,6 +18,22 @@ Observant OpenLink API version 1.0 provides access to data collected by Soil and
 ### Supported Weather Monitoring Sensors
 * Davis Weather Station
 
+### Observable Phenomena
+#### Soil Monitoring Sensors
+* Soil Moisture
+* Soil Temperature
+* Soil Electo-conductivity
+
+#### Weather Monitoring Sensors
+* Temperature (Air)
+* Dew Point
+* Humidity
+* Solar Radiation
+* UV index
+* Rainfall Summary
+* Wind 5 Minutely Average
+* Wind 10 Minutely Gust
+
 ## Documentation
 
 * [API](API.md)

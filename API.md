@@ -158,14 +158,14 @@ Response example
 | `location.lon` | `144.977967` | Longitude | no
 | `location.lat` | `-37.797059` | Latitude | no
 | `location.elv` | `3.9` | Elevation | no
-| `type` | `Soil Moisture` | Type of the Sensor | no
+| `type` | `Soil Moisture` | Type of the Sensor. List of supported sensor types is available [here](https://github.com/observant/oada-client#supported-soil-monitoring-sensors) | no
 | `readings` | | Readings of the Sensor | no
 | `readings.id` | `reading1` | ID of Sensor Reading  | no
 | `readings.name` | `Moisture` | Name of Sensor Reading | no
 | `readings.type`| 'double'| Data type of the Sensor Reading | no
 | `readings.unit`| '%'| Unit of the Sensor Reading | no
 | `readings.format`| '#0.00'| Format of the Sensor Reading | no
-| `readings.observing` | `soil_moisture` | Type of observation. Currently supported types are `soil_moisture`, `soil_temperature`, `soil_ec`  | yes (null when Sensors are not part of a Sensor group)
+| `readings.observing` | `soil_moisture` | Type of observation. List of observable phenomena is available [here](https://github.com/observant/oada-client#observable-phenomena) | yes (null when Sensors are not part of a Sensor group)
 | `readings.label`| `Soil Moisture` | Primary label of the reading | no
 | `readings.secondaryLabel`| `10 cm` | Secondary label of the reading | no
 

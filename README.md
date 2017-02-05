@@ -7,7 +7,7 @@ Observant's OpenLink API allows an Observant user to share their data with third
 
 Release date: 25th June 2015
 
-Observant OpenLink API version 1.0 provides access to data collected by Soil and Weather Monitoring sensors. It is an opt in feature which must be explicitly activated by the User in Observant's Crop Manager application for each installed sensor. Once data sharing is enabled by the User, registered third party clients can request access to sensor readings like soil moisture, temperature and electrical conductivity. The API returns data for the last seven days at one hour intervals by default. 
+Observant OpenLink API version 1.0 provides access to data collected by Soil and Weather Monitoring sensors. It is an opt in feature which must be explicitly activated by the User in Observant's Crop Manager application for each installed sensor. Once data sharing is enabled by the User, registered third party clients can request access to sensor readings like soil moisture, temperature and electrical conductivity. The API returns data for the last seven days at up to 15 minute intervals by default. 
 
 ### Supported Soil Monitoring Sensors
 * Aquacheck

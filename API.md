@@ -36,7 +36,7 @@ Response example
 {
     "username": "user.name",
     "scope": [
-        "soil-moisture"
+        "sensor-data"
     ],
     "resourceIds": [
         "oada/api"
@@ -48,7 +48,7 @@ Response example
 | Name | Example | Description | Nullable
 | ---- | ------- | ----------- | --------
 | `username` | `user.name` | Username in Observant system | no
-| `scope` | `soil-moisture` | List of scopes User has granted access to for Client application | no
+| `scope` | `sensor-data` | List of scopes User has granted access to for Client application | no
 | `resourceIds` | `oada/api` | List of resources the Client has access to in Observant system | no
 | `clinetId` | `TestFarms` | Client application ID in Observant system | no
 | `grantType` | `authorization_code` | Grant type in use | no

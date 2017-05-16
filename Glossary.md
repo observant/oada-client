@@ -19,4 +19,4 @@ A user is an Observant customer who decides to share their data with a third-par
 The server issuing access tokens to a client application after successfully authenticating the user and obtaining their authorisation.
 
 ### Scopes  
-Scopes can be used to limit the amount of data that is made available by the resource provider. OpenLink API version 0.5 will only have one scope for the user to select from - "soil moisture". This is subject to change as more data becomes accessible through the API.
+Scopes can be used to limit the amount of data that is made available by the resource provider. OpenLink API version 0.5 will only have one scope for the user to select from - "sensor data". This is subject to change as more options become accessible through the API.

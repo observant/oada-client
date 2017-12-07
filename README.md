@@ -13,6 +13,7 @@ Observant OpenLink API version 1.1 provides access to data collected by sensors 
 * Aquacheck
 * Decagon GS3
 * EnviroPro
+* Sentek Drill and Drop
 * Sentek EnviroScan
 * Stevens Hydra Probe II
 

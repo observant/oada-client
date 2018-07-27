@@ -121,9 +121,18 @@ Response example
 { 
   "id" : "sensor1", 
   "portfolio" : "portfolio-1",
+  "serialCode": "C3-2161",
   "name" : "Sensor 1-A", 
   "location" : { "lat" : -37.797059, "lon" : 144.977967, "elv" : 3.9 },
   "type" : "Soil Moisture",
+  "stateOfCharge": 95.5,
+  "rssi": -67,
+  "health": {
+    "status": "ERROR",
+    "type": "DevicePortUndercurrent",
+    "message": "Communication failure. Device is not drawing power as expected. Check cabling",
+    "timestamp": "2018-04-09T02:55:05.465Z"
+  },
   "readings" : [
       {
           "id" : "reading1",
@@ -153,12 +162,19 @@ Response example
 | ---- | ------- | ----------- | --------
 | `id` | `sensor1` | ID of the Sensor | no
 | `portfolio` | `portfolio-1` | ID of the Portfolio | no
+| `serialCode` | `C3-2161` | Serial Code of the field station that the sensor is connected to | no
 | `name`| `Sensor 1-A` | Name of the sensor | no
 | `location` | | Geolocation of the Sensor | no
 | `location.lon` | `144.977967` | Longitude | no
 | `location.lat` | `-37.797059` | Latitude | no
 | `location.elv` | `3.9` | Elevation | no
 | `type` | `Soil Moisture` | Type of the Sensor. List of supported sensor types is available [here](https://github.com/observant/oada-client#supported-soil-monitoring-sensors) | no
+| `stateOfCharge` | `95.5` | The field station state of charge in % | yes
+| `rssi` | `-67` | The field station signal strength in dBm | yes
+| `health.status` | `ERROR` | Health of sensor - OK, WARNING, ERROR or INACTIVE | no
+| `health.type` | `DevicePortUndercurrent` | Sensor health issue type | no
+| `health.message` | `Communication failure. Device is not drawing power as expected. Check cabling` | Sensor health user-friendly warning | no
+| `health.timestamp` | `2018-04-09T02:55:05.465Z` | Start time for the sensor health issue | no
 | `readings` | | Readings of the Sensor | no
 | `readings.id` | `reading1` | ID of Sensor Reading  | no
 | `readings.name` | `Moisture` | Name of Sensor Reading | no

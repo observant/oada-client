@@ -3,11 +3,11 @@
 ## Overview  
 Observant's OpenLink API allows an Observant user to share their data with third-party applications through an interface that strives to be [Open Agriculture Data Alliance](http://openag.io/) compliant. The data exposed through the API is represented in accordance to the OADA documentation and access to the API is restricted through the use of an [OAuth 2.0](http://oauth.net/) authentication and authorisation mechanism. Once a user is authenticated they can provide authorisation to the third-party application to make use of their data. The data that a third-party application receives will be dependant on the data that the user chose to share through the Observant platform.
 
-## Version 1.1
+## Version 1.2
 
-Release date: 14th August 2017
+Release date: 19th July 2018
 
-Observant OpenLink API version 1.1 provides access to data collected by sensors monitoring the following phenomenas: soil, weather, mirco-climate, water level, water flow and pressure. It is an opt in feature which must be explicitly activated by the User in Observant's management application on a per portfolio or per sensor basis. Once data sharing is enabled by the User, registered third party clients can request access to sensor readings like soil moisture, temperature and electrical conductivity. The API returns historical data for the requested time window, defaulting to the last week of data. Data granularity is deternmined based on the duration of the time window, i.e 5 minutely for the last 3 days, 15 minutely for the last week, hourly for the last month, etc... up to 12 hourly for the last 12 months. 
+Observant OpenLink API version 1.2 provides access to data collected by sensors monitoring the following phenomenas: soil, weather, mirco-climate, water level, water flow and pressure. It is an opt in feature which must be explicitly activated by the User in Observant's management application on a per portfolio or per sensor basis. Once data sharing is enabled by the User, registered third party clients can request access to sensor readings like soil moisture, temperature and electrical conductivity. The API returns historical data for the requested time window, defaulting to the last week of data. Data granularity is deternmined based on the duration of the time window, i.e 5 minutely for the last 3 days, 15 minutely for the last week, hourly for the last month, etc... up to 12 hourly for the last 12 months. As well as sensor data, the api returns some health informaiton about the sensor, like battery levels, signal strength and any unusual errors that were identified.
 
 ### Supported Soil Monitoring Sensors
 * Aquacheck

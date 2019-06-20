@@ -27,7 +27,7 @@ Response example
 | `name` | `portfolios` | Name of the bookmark | no
 | `url` | `https://hostname/api/bookmarks/portfolios` | Full URL of the bookmark | no
 
-## User details - `/users/me`
+## User details - `/api/users/me`
 
 Responds to HTTP GET request and returns details of the user account in Observant OADA server.
 
@@ -112,7 +112,7 @@ Response example
 | `portfolio` | `portfolio-1`| ID of the Protfolio | no
 | `name` | `Sensor-1A` | Name of the Sensor | no
 
-## Sensor Metadata - `/resources/{portfolioId}/{sensorId}/meta`
+## Sensor Metadata - `/api/resources/{portfolioId}/{sensorId}/meta`
 
 Responds to HTTP GET request. Returns meta data for given sensor.
 
@@ -185,7 +185,7 @@ Response example
 | `readings.label`| `Soil Moisture` | Primary label of the reading | no
 | `readings.secondaryLabel`| `10 cm` | Secondary label of the reading | no
 
-## Sensor Data - `/resources/{portfolioId}/{sensorId}/data`
+## Sensor Data - `/api/resources/{portfolioId}/{sensorId}/data`
 
 Responds to HTTP GET request. Returns data for given sensor.
 

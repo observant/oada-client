@@ -55,8 +55,15 @@ For example `https://test.obsrv.it/uaa/oauth/token`.
 ### Step 11
 Observant server recognises request and responds with tokens.
 For example
+
 ```javascript
-{ "access_token":"abcdef","token_type":"bearer","refresh_token":"0123456789","expires_in":86400,"scope":"sensor-data"}
+{
+  "access_token":"abcdef",
+  "token_type":"bearer",
+  "refresh_token":"0123456789",
+  "expires_in":86400,
+  "scope":"sensor-data"
+}
 ```
 
 ### Step 12

@@ -10,7 +10,7 @@ After successful authentication and authorisation Observant provides 'access tok
 Actually no logins are required from the Client. Client has to direct User to Observant server when User is willing to share data with Client. User is directed back to Client application after successful login and access granting in the Observant server. Client application has to use it's Observant credentials to exchange temporary code to actual 'access token' in Observant server. Credentials are sent as HTTP Basic Authentication header and this process is not requiring any manual interaction.
 
 ## As an User do I need to do two logins?
-As an User you have to login to Data Provider system to grant access for the Client. This is one time operation supposing Client application handles provided 'access token' properly. 
+As an User you have to login to Data Provider system to grant access for the Client. This is one time operation supposing Client application handles provided 'access token' properly.
 
 Most likely you have to login to the Client application time to time. This is matter between Client application and end user. It has nothing to do with Data Provider or OAuth2 protocol.
 
@@ -30,10 +30,10 @@ The redirect url registered with Observant must contain the scheme, domain and p
 ## Can query parameters be sent in the redirect url?
 The OAuth protocol allows for the transmission of additional state (otherwise achieved using query parameters, e.g. ?param=value) using a single 'state' query parameter. In order to pass an 'id' parameter as part of the redirect url, when hitting the 'oauth/authorize' endpoint, the id and it's value would need to be passed as the value of the state parameter. For example, see the following HTTP GET request and the resulting redirect url:
 
-####Request
+#### Request
 https://test.obsrv.it/uaa/oauth/authorize?response_type=code&client_id=TestFarms&redirect_uri=http%3A%2F%2Flocalhost%3A9977%2Ftestfarms%2Foada&state=id%3D123
 
-####Resulting redirect Url
+#### Resulting redirect Url
 http://localhost:9977/testfarms/oada?code=tWjSsu&state=id%3D123
 
 

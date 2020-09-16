@@ -8,9 +8,9 @@ To successfully interact with OAuth2 system Client side has to know few paramete
 
 | Parameter | Value | Description |
 | --------- | ----- | ----------- |
-| Authorisation URL | `https://test.obsrv.it/uaa/oauth/authorize` | URL of OAuth2 system to authorise users |
-| Token URL | `https://test.obsrv.it/uaa/oauth/token` | URL of OAuth2 system to exchange temporary access code to access_token |
-| Resource URL | `https://test.obsrv.it/api/` | Base URL for OAuth2 protected resources |
+| Authorisation URL | `https://global.test-jainlogic.com/uaa/oauth/authorize` | URL of OAuth2 system to authorise users |
+| Token URL | `https://global.test-jainlogic.com/uaa/oauth/token` | URL of OAuth2 system to exchange temporary access code to access_token |
+| Resource URL | `https://global.test-jainlogic.com/api/` | Base URL for OAuth2 protected resources |
 | Client ID | myService | Client ID provided by Observant. <sup>1</sup> |
 | Client Secret | mySecret123 | Client secret provided by Observant. <sup>1</sup> |
 | Client callback URI | `https://localhost:1888/myservice/oada/` | OAuth2 login callback URL specified by Client. This has to be registered with Client account in Observant system for successful OAuth2 logins. <sup>1</sup> |
@@ -22,7 +22,7 @@ To successfully interact with OAuth2 system Client side has to know few paramete
 ## OAuth2 workflows
 ### Login request
 All OAuth2 workflows start with user authentication and issuing access grants. For this we need to construct login URL on Client side and direct user browser to this page.
-`https://test.obsrv.it/uaa/oauth/authorize?response_type=code&client_id=myService&redirect_uri=https%3A%2F%2Flocalhost%3A1888%2Fmyservice%2Foada%2F`
+`https://global.test-jainlogic.com/uaa/oauth/authorize?response_type=code&client_id=myService&redirect_uri=https%3A%2F%2Flocalhost%3A1888%2Fmyservice%2Foada%2F`
 Usually it's done in client server by providing links like 'Login with XYZ', 'Connect your account with ABC' etc.
 To mimic this behaviour we can just copy-paste URL from above to web browser address bar.
 

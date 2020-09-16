@@ -17,14 +17,14 @@ This document describes general workflow between User, Client Application and Ob
 
 ### Step 2
 Client Application sends HTTP redirect response containing Observant authorization URL and required parameters `client_id`, `redirect_uri`, `response_type` and optional `state`.
-For example `https://test.obsrv.it/uaa/oauth/authorize?client_id=myService&redirect_uri=http%3A%2F%2Flocalhost%3A1888%myservice%2Foada%2F&response_type=code&state=ABC123`.
+For example `https://global.test-jainlogic.com/uaa/oauth/authorize?client_id=myService&redirect_uri=http%3A%2F%2Flocalhost%3A1888%myservice%2Foada%2F&response_type=code&state=ABC123`.
 
 ### Step 3
 Browsers sends HTTP GET request to Observant server using URL from previous step.
 
 ### Step 4
 1. Observant server recognises request and redirects browser to login form using HTTP 302 response and URL.
-For example `https://test.obsrv.it/uaa/authenticate`.
+For example `https://global.test-jainlogic.com/uaa/authenticate`.
 2. Browser sends GET request to specified URL.
 3. Observant server responds with login page.
 ![alt text][02]
@@ -34,7 +34,7 @@ Browser submits login form using HTTP POST request after user clicks 'SIGN IN' b
 
 ### Step 6
 1. Observant server recognises User and sends HTTP 302 response to redirect User to the authorization page.
-For example `https://test.obsrv.it/uaa/oauth/authorize?client_id=myService&redirect_uri=http%3A%2F%2Flocalhost%3A1188%2Fmyservice%2Foada%2F&response_type=code&state=ABC123`.
+For example `https://global.test-jainlogic.com/uaa/oauth/authorize?client_id=myService&redirect_uri=http%3A%2F%2Flocalhost%3A1188%2Fmyservice%2Foada%2F&response_type=code&state=ABC123`.
 2. Browser sends GET request with specified URL to Observant server.
 3. Observant server responds with authorization page.
 ![alt text][03]
@@ -50,7 +50,7 @@ Browser sends HTTP GET request to specified URL in Client Application.
 
 ### Step 10
 Client Application recognises request and sends HTTP POST request to Observant server to exchange code for tokens including Client Application credentials and required parameters `grant_type`, `client_id`, `redirect_uri` & `code`.
-For example `https://test.obsrv.it/uaa/oauth/token`.
+For example `https://global.test-jainlogic.com/uaa/oauth/token`.
 
 ### Step 11
 Observant server recognises request and responds with tokens.

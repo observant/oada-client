@@ -54,7 +54,7 @@ $ curl \
   --data "grant_type=authorization_code" \
   --data "redirect_uri=https://localhost:1888/myservice/oada/" \
   --verbose \
-  https://myService:mySecret123@test.obsrv.it/uaa/oauth/token
+  https://myService:mySecret123@global.test-jainlogic.com/uaa/oauth/token
 ```
 
 ##### Response
@@ -80,7 +80,7 @@ To access protected resources we can send HTTP GET request with OAuth2 specific 
 $ curl \
   --header "Authorization: Bearer 564810ff-7bd6-4ff7-a3bb-f76b0a0c28be" \
   --verbose \
-  https://test.obsrv.it/api/users/me
+  https://global.test-jainlogic.com/api/users/me
 ```
 
 ##### Response

@@ -80,10 +80,10 @@ Response example
 
 Responds to HTTP GET request. Returns list of available sensors.
 
-This request accepts optional parameter `portfolioId`. 
+This request accepts optional parameter `portfolio`. 
 If provided returned list is filtered using given Portfolio ID.
-Example request URL with optional portfolio ID `/api/bookmarks/sensors?portfolioId=portfolio-1`. 
-List of valid portfolio ID-s can be obtained from Portfolios endpoint.
+Example request URL with optional portfolio ID `/api/bookmarks/sensors?portfolio=portfolio-1`. 
+List of valid portfolio IDs can be obtained from Portfolios endpoint.
 
 Response example
 ```javascript

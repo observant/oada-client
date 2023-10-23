@@ -189,7 +189,7 @@ Response example
 
 Responds to HTTP GET request. Returns data for given sensor.
 
-This request accepts optional 'from' and 'until' parameters. When provided returns the data for the given time window (inclusive range, i.e includes data points exactly at 'from' or 'until'), otherwise returns sensor data for the last week. Data granularity is deternmined based on the duration of the time window, i.e 5 minutely for the last 3 days, 15 minutely for the last week, hourly for the last month, etc... up to 12 hourly for the last 12 months of data requested.
+This request accepts optional 'from' and 'until' parameters. When provided returns the data for the given time window (inclusive range, i.e includes data points exactly at 'from' or 'until'), otherwise returns sensor data for the last week.
 
 Response example
 ```javascript

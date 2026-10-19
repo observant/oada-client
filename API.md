@@ -240,70 +240,22 @@ Response example
 | `readings.entries.errorReason`| 'No named Sensor found for this field'| The cause of the error | yes (null when no error)
 
 
-###Wind-Direction enumeration values
+### Wind-Direction Enumeration Values
 ```javascript
-{
-    "enum": 0,
-    "value": "N"
-},
-{
-    "enum": 1,
-    "value": "NNE"
-},
-{
-    "enum": 2,
-    "value": "NE"
-},
-{
-    "enum": 3,
-    "value": "ENE"
-},
-{
-    "enum": 4,
-    "value": "E"
-},
-{
-    "enum": 5,
-    "value": "ESE"
-},
-{
-    "enum": 6,
-    "value": "SE"
-},
-{
-    "enum": 7,
-    "value": "SSE"
-},
-{
-    "enum": 8,
-    "value": "S"
-},
-{
-    "enum": 9,
-    "value": "SSW"
-},
-{
-    "enum": 10,
-    "value": "SW"
-},
-{
-    "enum": 11,
-    "value": "WSW"
-},
-{
-    "enum": 12,
-    "value": "W"
-},
-{
-    "enum": 13,
-    "value": "WNW"
-},
-{
-    "enum": 14,
-    "value": "NW"
-},
-{
-    "enum": 15,
-    "value": "NNW"
-}
+{ "enum": 0,  "value": "N" },
+{ "enum": 1,  "value": "NNE" },
+{ "enum": 2,  "value": "NE" },
+{ "enum": 3,  "value": "ENE" },
+{ "enum": 4,  "value": "E" },
+{ "enum": 5,  "value": "ESE" },
+{ "enum": 6,  "value": "SE" },
+{ "enum": 7,  "value": "SSE" },
+{ "enum": 8,  "value": "S" },
+{ "enum": 9,  "value": "SSW" },
+{ "enum": 10, "value": "SW" },
+{ "enum": 11, "value": "WSW" },
+{ "enum": 12, "value": "W" },
+{ "enum": 13, "value": "WNW" },
+{ "enum": 14, "value": "NW" },
+{ "enum": 15, "value": "NNW" }
 ```
